@@ -1,0 +1,52 @@
+/* ═══════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════ */
+
+/* ── Container ── */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+/* ── Section labels ── */
+.section__label {
+  display: inline-block;
+  font-family: var(--ff-body);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-bottom: var(--sp-md);
+}
+
+/* ── Section titles ── */
+.section__title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-light);
+  color: var(--c-white);
+  margin-bottom: var(--sp-md);
+}
+
+.section__title em {
+  font-style: italic;
+  color: var(--c-gold);
+}
+
+/* ── Section desc ── */
+.section__desc {
+  font-size: var(--fs-body);
+  color: var(--c-text-muted);
+  max-width: 600px;
+  margin-bottom: var(--sp-xl);
+}
+
+/* ── Section spacing ── */
+.section {
+  padding-top: var(--sp-section);
+  padding-bottom: var(--sp-section);
+}
