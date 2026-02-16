@@ -163,8 +163,8 @@
   // HERO ENTRANCE ANIMATIONS
   // ─────────────────────────────────────
   function initHeroEntrance() {
-    // Skip if scrollHint or hero elements missing to avoid console errors
-    if (!document.querySelector('.hero__title') || !document.querySelector('#scrollHint')) return;
+    // Skip if hero elements missing to avoid console errors
+    if (!document.querySelector('.hero__title')) return;
 
     const tl = gsap.timeline({
       delay: 0.8,
@@ -196,11 +196,15 @@
       opacity: 1,
       y: 0,
       duration: 0.6
-    }, '-=0.3')
-    .to('#scrollHint', {
-      opacity: 1,
-      duration: 0.6
-    }, '-=0.2');
+    }, '-=0.3');
+    
+    // Animate scroll hint if it exists
+    if (document.querySelector('#scrollHint')) {
+      tl.to('#scrollHint', {
+        opacity: 1,
+        duration: 0.6
+      }, '-=0.2');
+    }
   }
 
 
