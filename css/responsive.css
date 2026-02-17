@@ -144,10 +144,16 @@
   .contacts__grid {
     grid-template-columns: 1fr;
     gap: var(--sp-xl);
+    width: 100%;
+    overflow: hidden;
   }
   .contacts__map {
     aspect-ratio: 16/9;
     min-height: 300px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   /* Team */
@@ -304,6 +310,11 @@
     max-width: 280px;
   }
 
+  /* Contacts Map */
+  .contacts__map {
+    min-height: 250px;
+  }
+
   /* Section spacing */
   .section {
     padding-top: clamp(3rem, 8vh, 5rem);
@@ -330,21 +341,26 @@
 /* ── Wide Desktop (≥ 1200px) ── */
 @media (min-width: 1200px) {
   .portfolio__content-wrap {
-    grid-template-columns: 1.1fr 0.9fr;
-    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 520px;
+    align-items: stretch;
   }
   .portfolio__info {
     display: flex;
     pointer-events: auto;
-    position: sticky;
-    top: calc(var(--header-h) + 2rem);
+    overflow-y: auto;
   }
   .portfolio__swiper {
-    overflow: visible;
+    overflow: hidden;
+    height: 100%;
+  }
+  .portfolio__swiper .swiper-wrapper {
+    height: 100%;
   }
   .portfolio__slide {
-    width: 440px;
-    height: 320px;
+    width: 100%;
+    height: 100%;
+    max-width: none;
   }
 }
 
@@ -353,9 +369,8 @@
   :root {
     --container-max: 1400px;
   }
-  .portfolio__slide {
-    width: 480px;
-    height: 340px;
+  .portfolio__content-wrap {
+    grid-template-rows: 580px;
   }
 }
 

@@ -351,7 +351,6 @@
   max-width: 80vw;
   height: 420px;
   display: flex;
-  aspect-ratio: 1 / 1;
 }
 .portfolio__img-wrap {
   position: relative;
@@ -359,8 +358,6 @@
   overflow: hidden;
   width: 100%;
   height: 100%;
-  flex: 1;
-  aspect-ratio: 1 / 1;
 }
 .portfolio__img {
   width: 100%;
@@ -426,6 +423,14 @@
   color: var(--c-text-muted);
   display: flex;
   gap: 0.25rem;
+  font-variant-numeric: tabular-nums;
+  min-width: fit-content;
+  width: fit-content;
+}
+.portfolio__current,
+.portfolio__divider,
+.portfolio__total {
+  font-variant-numeric: tabular-nums;
 }
 .portfolio__current {
   color: var(--c-gold);
@@ -438,17 +443,24 @@
   background: rgba(20, 20, 20, 0.6);
   border: 1px solid var(--c-border);
   border-radius: var(--radius-lg);
-  padding: var(--sp-xl);
+  padding: 2.5rem;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   overflow: hidden;
-  min-height: 300px;
 }
 .portfolio__info-content {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-lg);
+  gap: 1.25rem;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 0.15s ease-out;
 }
+
+.portfolio__info-content.fade-out {
+  opacity: 0;
+}
+
 .portfolio__info-label {
   font-size: var(--fs-xs);
   font-weight: var(--fw-semibold);
@@ -458,7 +470,7 @@
 }
 .portfolio__info-title {
   font-family: var(--ff-heading);
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-size: 1.75rem;
   font-weight: var(--fw-light);
   color: var(--c-white);
   line-height: 1.2;
@@ -471,10 +483,12 @@
 .portfolio__info-details {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-md);
-  padding: var(--sp-lg) 0;
+  gap: 1rem;
+  padding: 1.25rem 0;
   border-top: 1px solid var(--c-border);
   border-bottom: 1px solid var(--c-border);
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .portfolio__info-item {
   display: flex;
@@ -496,6 +510,11 @@
   font-size: var(--fs-base);
   font-weight: var(--fw-medium);
   color: var(--c-white);
+}
+
+.portfolio__info .btn {
+  margin-top: auto;
+  width: 100%;
 }
 
 
@@ -692,6 +711,8 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--sp-3xl);
   align-items: start;
+  width: 100%;
+  overflow: hidden;
 }
 .contacts__items {
   display: flex;
@@ -760,6 +781,9 @@ a.contacts__item-value:hover {
   aspect-ratio: 1/1;
   min-height: 400px;
   border: 1px solid var(--c-border);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 .contacts__map iframe {
   width: 100%;

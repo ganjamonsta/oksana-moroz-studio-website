@@ -303,8 +303,10 @@
     const totalEl = document.querySelector('.portfolio__total');
     const infoCard = document.querySelector('.portfolio__info-content');
     const infoBox = document.querySelector('.portfolio__info');
+    
+    let previousIndex = 0;
 
-    function updateInfoCard(slideIndex) {
+    function updateInfoCard(slideIndex, direction = 'next') {
       if (!infoCard || !infoBox) return;
       const slides = swiperEl.querySelectorAll('.swiper-slide');
       const slide = slides[slideIndex];
@@ -320,43 +322,32 @@
       const timeEl = infoCard.querySelector('.portfolio__info-detail-value');
       const complexityEl = infoCard.querySelectorAll('.portfolio__info-detail-value')[1];
 
-      // If GSAP available, animate height + fade
-      if (typeof gsap !== 'undefined') {
-        const oldHeight = infoBox.offsetHeight;
-
-        // Fade out content
-        gsap.to(infoCard, { opacity: 0, y: 8, duration: 0.18, ease: 'power1.out' });
-
-        // Apply new content immediately after fade-out starts to measure new height
+      // Fade out current content
+      infoCard.classList.add('fade-out');
+      
+      // Remove animation classes
+      infoCard.classList.remove('slide-left', 'slide-right');
+      
+      // Update content while fading out
+      setTimeout(() => {
         if (titleEl) titleEl.textContent = title;
         if (descEl) descEl.textContent = desc;
         if (timeEl) timeEl.textContent = time;
         if (complexityEl) complexityEl.textContent = complexity;
-
-        // Measure new height
-        infoBox.style.height = 'auto';
-        const newHeight = infoBox.offsetHeight;
-
-        // Set back to old height before animating to new
-        infoBox.style.height = oldHeight + 'px';
-
-        gsap.to(infoBox, {
-          height: newHeight,
-          duration: 0.28,
-          ease: 'power2.out',
-          onComplete: () => {
-            infoBox.style.height = 'auto';
-          }
-        });
-
-        // Fade in content after slight delay
-        gsap.to(infoCard, { opacity: 1, y: 0, duration: 0.22, ease: 'power1.out', delay: 0.12 });
-      } else {
-        if (titleEl) titleEl.textContent = title;
-        if (descEl) descEl.textContent = desc;
-        if (timeEl) timeEl.textContent = time;
-        if (complexityEl) complexityEl.textContent = complexity;
-      }
+        
+        // Remove fade-out class to trigger fade-in
+        infoCard.classList.remove('fade-out');
+        
+        // Force reflow to restart animation
+        void infoCard.offsetWidth;
+        
+        // Add slide animation class based on direction
+        if (direction === 'next') {
+          infoCard.classList.add('slide-right');
+        } else {
+          infoCard.classList.add('slide-left');
+        }
+      }, 75);
     }
 
     try {
@@ -397,10 +388,13 @@
         },
         on: {
           slideChange: function () {
+            const direction = this.activeIndex > previousIndex ? 'next' : 'prev';
+            previousIndex = this.activeIndex;
+            
             if (currentEl) {
               currentEl.textContent = String(this.activeIndex + 1).padStart(2, '0');
             }
-            updateInfoCard(this.activeIndex);
+            updateInfoCard(this.activeIndex, direction);
           },
           init: function () {
             if (totalEl) {
@@ -409,7 +403,7 @@
             if (currentEl) {
               currentEl.textContent = '01';
             }
-            updateInfoCard(0);
+            updateInfoCard(0, 'next');
           },
           touchStart: function () {
             // Stop Lenis when touching swiper (desktop only; on mobile Lenis is off)

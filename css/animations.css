@@ -120,3 +120,34 @@
     transform: scale(1) rotate(0deg);
   }
 }
+
+/* ── Portfolio slide animations ── */
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.portfolio__info-content.slide-left {
+  animation: slideFromLeft 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.portfolio__info-content.slide-right {
+  animation: slideFromRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
