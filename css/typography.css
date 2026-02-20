@@ -9,6 +9,7 @@
   margin: 0 auto;
   padding-left: var(--container-pad);
   padding-right: var(--container-pad);
+  box-sizing: border-box;
 }
 
 /* ── Section labels ── */
@@ -30,6 +31,8 @@
   font-weight: var(--fw-light);
   color: var(--c-white);
   margin-bottom: var(--sp-md);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .section__title em {
@@ -43,6 +46,8 @@
   color: var(--c-text-muted);
   max-width: 600px;
   margin-bottom: var(--sp-xl);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* ── Section spacing ── */

@@ -97,7 +97,6 @@
         <h1 class="hero__title">
           <span class="hero__title-line anim-fade" data-anim="split">Oksana</span>
           <span class="hero__title-line anim-fade" data-anim="split">Moroz</span>
-          <span class="hero__title-line hero__title-line--accent anim-fade" data-anim="split">Studio</span>
         </h1>
         <p class="hero__desc anim-fade" data-anim="fade-up">Место, где опытные колористы помогают воплотить мечту в реальность</p>
         <div class="hero__buttons anim-fade" data-anim="fade-up">
@@ -120,7 +119,7 @@
       <div class="container about__grid">
         <div class="about__image-col anim-fade" data-anim="fade-right">
           <div class="about__image-wrapper">
-            <img src="assets/images/1.jpeg"
+            <img src="assets/images/about.jpg"
                  alt="Работа колористов Oksana Moroz Studio" class="about__image" loading="lazy">
             <div class="about__image-frame"></div>
           </div>
@@ -133,16 +132,16 @@
 
           <div class="about__stats">
             <div class="about__stat anim-fade" data-anim="fade-up">
-              <span class="about__stat-number" data-count="5">0</span><span class="about__stat-plus">+</span>
+              <span class="about__stat-number" data-count="20">0</span><span class="about__stat-plus">+</span>
               <span class="about__stat-label">Лет опыта</span>
             </div>
             <div class="about__stat anim-fade" data-anim="fade-up">
-              <span class="about__stat-number" data-count="1500">0</span><span class="about__stat-plus">+</span>
+              <span class="about__stat-number" data-count="15000">0</span><span class="about__stat-plus">+</span>
               <span class="about__stat-label">Довольных клиентов</span>
             </div>
             <div class="about__stat anim-fade" data-anim="fade-up">
-              <span class="about__stat-number" data-count="4">0</span>
-              <span class="about__stat-label">Бренда премиум-ухода</span>
+              <span class="about__stat-number" data-count="100">0</span><span class="about__stat-plus">%</span>
+              <span class="about__stat-label">Премиум материалы</span>
             </div>
           </div>
 
@@ -162,6 +161,10 @@
         <span class="marquee__sep">&bull;</span>
         <span class="marquee__item">Total Blonde</span>
         <span class="marquee__sep">&bull;</span>
+        <span class="marquee__item">Интеллигентный блонд</span>
+        <span class="marquee__sep">&bull;</span>
+        <span class="marquee__item">Шитьё седины</span>
+        <span class="marquee__sep">&bull;</span>
         <span class="marquee__item">Мелирование</span>
         <span class="marquee__sep">&bull;</span>
         <span class="marquee__item">Бразильский блонд</span>
@@ -176,6 +179,10 @@
         <span class="marquee__item">Airtouch</span>
         <span class="marquee__sep">&bull;</span>
         <span class="marquee__item">Total Blonde</span>
+        <span class="marquee__sep">&bull;</span>
+        <span class="marquee__item">Интеллигентный блонд</span>
+        <span class="marquee__sep">&bull;</span>
+        <span class="marquee__item">Шитьё седины</span>
         <span class="marquee__sep">&bull;</span>
         <span class="marquee__item">Мелирование</span>
         <span class="marquee__sep">&bull;</span>
@@ -197,75 +204,153 @@
         <h2 class="section__title anim-fade" data-anim="fade-up">Сложное окрашивание <em>премиум-класса</em></h2>
         <p class="section__desc anim-fade" data-anim="fade-up">Каждый оттенок подбирается индивидуально с&nbsp;учётом вашего цветотипа, структуры волос и&nbsp;пожеланий</p>
 
-        <div class="services__grid">
-          <!-- Card 1 -->
-          <div class="services__card anim-fade" data-anim="fade-up">
-            <div class="services__card-icon">
-              <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M20 32c0-8 5-16 12-16s12 8 12 16-5 16-12 16-12-8-12-16z" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
-            <h3 class="services__card-title">Балаяж</h3>
-            <p class="services__card-desc">Техника свободной руки для естественных бликов и&nbsp;мягких переходов. Создаёт эффект выгоревших на&nbsp;солнце волос.</p>
-            <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
-              Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </a>
+        <!-- Консультация CTA -->
+        <div class="services__cta anim-fade" data-anim="fade-up">
+          <h3 class="services__cta-title">Всё начинается с&nbsp;консультации</h3>
+          <p class="services__cta-desc">Подберём технику и&nbsp;оттенок. Определим цветотип, оценим состояние волос</p>
+          <div class="services__cta-buttons">
+            <a href="https://wa.me/79629488757" target="_blank" class="btn btn--gold">WhatsApp</a>
+            <a href="https://t.me/oksmoroz_studio" target="_blank" class="btn btn--outline">Telegram</a>
+          </div>
+        </div>
+
+        <!-- TABS -->
+        <div class="services__tabs anim-fade" data-anim="fade-up">
+          <div class="services__tabs-nav">
+            <button class="services__tab-button services__tab-button--active" data-tab="techniques">
+              Основные техники
+            </button>
+            <button class="services__tab-button" data-tab="blondes">
+              Блонды
+            </button>
+            <button class="services__tab-button" data-tab="special">
+              Специальные
+            </button>
           </div>
 
-          <!-- Card 2 -->
-          <div class="services__card anim-fade" data-anim="fade-up">
-            <div class="services__card-icon">
-              <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M22 22l20 20M42 22L22 42" stroke="currentColor" stroke-width="1.5"/></svg>
+          <!-- TAB 1: Основные техники -->
+          <div class="services__tab-content services__tab-content--active" data-tab="techniques">
+            <div class="services__grid">
+              <!-- Балаяж -->
+              <div class="services__card anim-fade" data-anim="fade-up">
+                <div class="services__card-icon">
+                  <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M20 32c0-8 5-16 12-16s12 8 12 16-5 16-12 16-12-8-12-16z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <h3 class="services__card-title">Балаяж</h3>
+                <p class="services__card-desc">Естественные блики и мягкие переходы цвета. Идеален для создания объёма и визуального движения волос.</p>
+                <div class="services__card-meta">
+                  <span>➔ Кому: от русого до чёрного</span>
+                  <span>➔ После: тёплые компрессы и масла</span>
+                </div>
+                <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
+                  Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </a>
+              </div>
+
+              <!-- Airtouch -->
+              <div class="services__card anim-fade" data-anim="fade-up">
+                <div class="services__card-icon">
+                  <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M22 22l20 20M42 22L22 42" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <h3 class="services__card-title">Airtouch</h3>
+                <p class="services__card-desc">Щадящее осветление феном — безопасно, деликатно. Минимум повреждения структуры волос.</p>
+                <div class="services__card-meta">
+                  <span>➔ Кому: чувствительные волосы</span>
+                  <span>➔ После: интенсивный уход K18</span>
+                </div>
+                <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
+                  Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </a>
+              </div>
+
+              <!-- Total Blonde -->
+              <div class="services__card anim-fade" data-anim="fade-up">
+                <div class="services__card-icon">
+                  <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M32 16v32M16 32h32" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <h3 class="services__card-title">Total Blonde</h3>
+                <p class="services__card-desc">Полное осветление с идеальной ровностью. Холодный или тёплый блонд без жёлтых пятен.</p>
+                <div class="services__card-meta">
+                  <span>➔ Кому: хотя бы чёрные волосы</span>
+                  <span>➔ После: еженедельный уход, тонирование</span>
+                </div>
+                <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
+                  Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </a>
+              </div>
             </div>
-            <h3 class="services__card-title">Airtouch</h3>
-            <p class="services__card-desc">Щадящая техника осветления с&nbsp;помощью выдувания феном. Максимально мягкий переход и&nbsp;минимум повреждения.</p>
-            <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
-              Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </a>
           </div>
 
-          <!-- Card 3 -->
-          <div class="services__card anim-fade" data-anim="fade-up">
-            <div class="services__card-icon">
-              <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M32 16v32M16 32h32" stroke="currentColor" stroke-width="1.5"/></svg>
+          <!-- TAB 2: Блонды -->
+          <div class="services__tab-content" data-tab="blondes">
+            <div class="services__grid">
+              <!-- Интеллигентный блонд -->
+              <div class="services__card anim-fade" data-anim="fade-up">
+                <div class="services__card-icon">
+                  <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M24 20c0 8 4 14 8 20M32 20c4 6 8 12 8 20" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <h3 class="services__card-title">Интеллигентный блонд</h3>
+                <p class="services__card-desc">Деликатное осветление с благородными переливами. Утончённый, многогранный цвет.</p>
+                <div class="services__card-meta">
+                  <span>➔ Эффект: элегантность и естественность</span>
+                  <span>➔ После: еженедельная тоника</span>
+                </div>
+                <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
+                  Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </a>
+              </div>
+
+              <!-- Бразильский блонд -->
+              <div class="services__card anim-fade" data-anim="fade-up">
+                <div class="services__card-icon">
+                  <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M20 38c3-8 9-14 12-14s9 6 12 14" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <h3 class="services__card-title">Бразильский блонд</h3>
+                <p class="services__card-desc">Тёплый многогранный блонд с медовыми и золотистыми рефлексами. Роскошный и объёмный.</p>
+                <div class="services__card-meta">
+                  <span>➔ Эффект: солнце и объём</span>
+                  <span>➔ После: масло для сияния</span>
+                </div>
+                <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
+                  Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </a>
+              </div>
             </div>
-            <h3 class="services__card-title">Total Blonde</h3>
-            <p class="services__card-desc">Полное осветление с&nbsp;сохранением качества. Равномерный холодный или тёплый блонд без&nbsp;жёлтых пятен.</p>
-            <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
-              Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </a>
           </div>
 
-          <!-- Card 4 -->
-          <div class="services__card anim-fade" data-anim="fade-up">
-            <div class="services__card-icon">
-              <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M24 24c4-4 12-4 16 0s4 12 0 16-12 4-16 0-4-12 0-16z" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
-            <h3 class="services__card-title">Мелирование</h3>
-            <p class="services__card-desc">Классическая и&nbsp;современная техника выделения прядей для объёма и&nbsp;визуальной текстуры волос.</p>
-            <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
-              Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </a>
-          </div>
+          <!-- TAB 3: Специальные -->
+          <div class="services__tab-content" data-tab="special">
+            <div class="services__grid">
+              <!-- Шитьё седины -->
+              <div class="services__card anim-fade" data-anim="fade-up">
+                <div class="services__card-icon">
+                  <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M20 32h24M26 24l-6 8 6 8M38 24l6 8-6 8" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <h3 class="services__card-title">Шитьё седины</h3>
+                <p class="services__card-desc">Авторская техника Оксаны. Безупречное закрашивание с естественным результатом и стойкостью.</p>
+                <div class="services__card-meta">
+                  <span>➔ Результат: до 3 месяцев</span>
+                  <span>➔ После: защита от секущихся концов</span>
+                </div>
+                <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
+                  Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </a>
+              </div>
 
-          <!-- Card 5 -->
-          <div class="services__card anim-fade" data-anim="fade-up">
-            <div class="services__card-icon">
-              <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M20 38c3-8 9-14 12-14s9 6 12 14" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
-            <h3 class="services__card-title">Бразильский блонд</h3>
-            <p class="services__card-desc">Тёплый многогранный блонд с&nbsp;медовыми и&nbsp;золотистыми рефлексами. Сияющий объёмный цвет.</p>
-            <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
-              Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </a>
-          </div>
-
-          <!-- Card 6 -->
-          <div class="services__card services__card--cta anim-fade" data-anim="fade-up">
-            <div class="services__card-cta-inner">
-              <h3 class="services__card-title">Нужна консультация?</h3>
-              <p class="services__card-desc">Подберём идеальную технику и&nbsp;оттенок на&nbsp;бесплатной консультации</p>
-              <div class="services__card-buttons">
-                <a href="https://wa.me/79629488757" target="_blank" class="btn btn--gold">Написать в WhatsApp</a>
-                <a href="https://t.me/oksmoroz_studio" target="_blank" class="btn btn--outline">Написать в Telegram</a>
+              <!-- Мелирование -->
+              <div class="services__card anim-fade" data-anim="fade-up">
+                <div class="services__card-icon">
+                  <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M24 24c4-4 12-4 16 0s4 12 0 16-12 4-16 0-4-12 0-16z" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <h3 class="services__card-title">Мелирование</h3>
+                <p class="services__card-desc">Классическая техника для добавления объёма и текстуры. Работает на любых волосах.</p>
+                <div class="services__card-meta">
+                  <span>➔ Кому: все типы волос</span>
+                  <span>➔ После: питательные маски</span>
+                </div>
+                <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
+                  Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </a>
               </div>
             </div>
           </div>
@@ -344,7 +429,7 @@
                    data-time="3-4 часа"
                    data-complexity="Средняя">
                 <div class="portfolio__img-wrap">
-                  <img src="assets/images/5.jpeg"
+                  <img src="assets/images/5.jpg"
                        alt="Работа — мелирование" loading="lazy" class="portfolio__img">
                   <div class="portfolio__slide-overlay">
                     <span class="portfolio__slide-tag">Мелирование</span>
@@ -407,6 +492,47 @@
     </section>
 
     <!-- ═══════════════════════════════════════ -->
+    <!-- 05a. FIX (Исправление окрашивания) -->
+    <!-- ═══════════════════════════════════════ -->
+    <section class="fix section">
+      <div class="container fix__grid">
+        <div class="fix__content anim-fade" data-anim="fade-right">
+          <span class="section__label">Исправим</span>
+          <h2 class="section__title">Были у&nbsp;другого мастера? <em>Мы&nbsp;спасём</em></h2>
+          <p class="fix__text">Каждое 10-е окрашивание в&nbsp;нашей студии&nbsp;&mdash; это коррекция после другого мастера. Мы&nbsp;не&nbsp;осуждаем, мы&nbsp;возвращаем волосам здоровье и&nbsp;создаём тот&nbsp;самый желанный результат.</p>
+          <ul class="fix__list">
+            <li class="fix__list-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="var(--c-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Исправление нежелательного цвета</span>
+            </li>
+            <li class="fix__list-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="var(--c-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Восстановление повреждённой структуры</span>
+            </li>
+            <li class="fix__list-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="var(--c-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Работа с&nbsp;последствиями непрофессионального окрашивания</span>
+            </li>
+            <li class="fix__list-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="var(--c-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Диагностика: тест-прядь и&nbsp;оценка структуры волос</span>
+            </li>
+          </ul>
+          <div class="fix__buttons">
+            <a href="https://t.me/oksmoroz_studio" target="_blank" class="btn btn--gold">Написать в&nbsp;Telegram</a>
+            <a href="https://wa.me/79629488757" target="_blank" class="btn btn--outline">WhatsApp</a>
+          </div>
+        </div>
+        <div class="fix__quote anim-fade" data-anim="fade-left">
+          <blockquote class="fix__blockquote">
+            <p>&laquo;Перед сложным окрашиванием мы&nbsp;ВСЕГДА проводим диагностику. Все колористы в&nbsp;Oksana Moroz Studio&nbsp;&mdash; настоящие профессионалы своего дела. Постоянно учатся, в&nbsp;курсе всех трендов, работают исключительно на&nbsp;КАЧЕСТВО&raquo;</p>
+            <footer class="fix__blockquote-author">&mdash; Из&nbsp;официального канала студии</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
     <!-- 05b. TEAM (Наши мастера) -->
     <!-- ═══════════════════════════════════════ -->
     <section class="team section" id="team">
@@ -425,7 +551,7 @@
             <div class="team__card-info">
               <h3 class="team__card-name">Оксана Мороз</h3>
               <span class="team__card-role">Арт-директор</span>
-              <p class="team__card-desc">Основательница студии с&nbsp;15-летним опытом. Проводит авторские мастер-классы по&nbsp;технике Air-Blond и&nbsp;шитью седины. Специалист по&nbsp;сложным трансформациям и&nbsp;коррекции окрашиваний.</p>
+              <p class="team__card-desc">Основательница студии с&nbsp;20-летним опытом. Проводит авторские мастер-классы по&nbsp;технике Air-Blond и&nbsp;шитью седины. Специалист по&nbsp;сложным трансформациям и&nbsp;коррекции окрашиваний.</p>
             </div>
           </div>
 
@@ -436,22 +562,9 @@
               </div>
             </div>
             <div class="team__card-info">
-              <h3 class="team__card-name">Карина</h3>
-              <span class="team__card-role">Ведущий колорист</span>
-              <p class="team__card-desc">Мастер с&nbsp;безупречным чувством цвета. Специализируется на&nbsp;балаяже, airtouch и&nbsp;сложных блондах. Любимый мастер постоянных клиентов студии.</p>
-            </div>
-          </div>
-
-          <div class="team__card anim-fade" data-anim="fade-up">
-            <div class="team__card-avatar">
-              <div class="team__card-avatar-placeholder">
-                <svg viewBox="0 0 64 64" fill="none" width="64" height="64"><circle cx="32" cy="24" r="12" stroke="currentColor" stroke-width="1.5"/><path d="M10 56c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="currentColor" stroke-width="1.5"/></svg>
-              </div>
-            </div>
-            <div class="team__card-info">
-              <h3 class="team__card-name">Дарья</h3>
-              <span class="team__card-role">Ведущий колорист</span>
-              <p class="team__card-desc">Создаёт невероятную красоту и&nbsp;естественные образы. Мастер, которому доверяют даже самые сложные случаи. Работает под руководством Оксаны Мороз.</p>
+              <h3 class="team__card-name">Дарья М.</h3>
+              <span class="team__card-role">Мастер-юниор</span>
+              <p class="team__card-desc">Талантливый молодой колорист, работающий под руководством Оксаны Мороз. Выполняет окрашивания по&nbsp;авторским техникам студии. Внимательна к&nbsp;деталям и&nbsp;пожеланиям клиентов.</p>
             </div>
           </div>
         </div>
@@ -518,47 +631,6 @@
     </section>
 
     <!-- ═══════════════════════════════════════ -->
-    <!-- 06b. FIX (Исправление окрашивания) -->
-    <!-- ═══════════════════════════════════════ -->
-    <section class="fix section">
-      <div class="container fix__grid">
-        <div class="fix__content anim-fade" data-anim="fade-right">
-          <span class="section__label">Исправим</span>
-          <h2 class="section__title">Были у&nbsp;другого мастера? <em>Мы&nbsp;спасём</em></h2>
-          <p class="fix__text">Каждое 10-е окрашивание в&nbsp;нашей студии&nbsp;&mdash; это коррекция после другого мастера. Мы&nbsp;не&nbsp;осуждаем, мы&nbsp;возвращаем волосам здоровье и&nbsp;создаём тот&nbsp;самый желанный результат.</p>
-          <ul class="fix__list">
-            <li class="fix__list-item">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="var(--c-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span>Исправление нежелательного цвета</span>
-            </li>
-            <li class="fix__list-item">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="var(--c-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span>Восстановление повреждённой структуры</span>
-            </li>
-            <li class="fix__list-item">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="var(--c-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span>Работа с&nbsp;последствиями непрофессионального окрашивания</span>
-            </li>
-            <li class="fix__list-item">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="var(--c-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span>Диагностика: тест-прядь и&nbsp;оценка структуры волос</span>
-            </li>
-          </ul>
-          <div class="fix__buttons">
-            <a href="https://t.me/oksmoroz_studio" target="_blank" class="btn btn--gold">Написать в&nbsp;Telegram</a>
-            <a href="https://wa.me/79629488757" target="_blank" class="btn btn--outline">WhatsApp</a>
-          </div>
-        </div>
-        <div class="fix__quote anim-fade" data-anim="fade-left">
-          <blockquote class="fix__blockquote">
-            <p>&laquo;Перед сложным окрашиванием мы&nbsp;ВСЕГДА проводим диагностику. Все колористы в&nbsp;Oksana Moroz Studio&nbsp;&mdash; настоящие профессионалы своего дела. Постоянно учатся, в&nbsp;курсе всех трендов, работают исключительно на&nbsp;КАЧЕСТВО&raquo;</p>
-            <footer class="fix__blockquote-author">&mdash; Из&nbsp;официального канала студии</footer>
-          </blockquote>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════ -->
     <!-- 07. ADVANTAGES -->
     <!-- ═══════════════════════════════════════ -->
     <section class="advantages section">
@@ -570,7 +642,7 @@
             </div>
             <div class="advantages__text">
               <h3>Опытные колористы</h3>
-              <p>Более 5&nbsp;лет специализации на&nbsp;сложном окрашивании и&nbsp;постоянное обучение</p>
+              <p>Более 20&nbsp;лет специализации на&nbsp;сложном окрашивании и&nbsp;постоянное обучение</p>
             </div>
           </div>
 

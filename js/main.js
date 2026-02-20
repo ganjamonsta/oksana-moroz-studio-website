@@ -670,6 +670,35 @@
     });
   }
 
+  // ─────────────────────────────────────
+  // SERVICES TABS
+  // ─────────────────────────────────────
+  function initServicesTabs() {
+    const tabButtons = document.querySelectorAll('.services__tab-button');
+    const tabContents = document.querySelectorAll('.services__tab-content');
+
+    if (tabButtons.length === 0) return; // Exit if no tabs found
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const tabName = button.getAttribute('data-tab');
+
+        // Remove active class from all buttons and contents
+        tabButtons.forEach(btn => btn.classList.remove('services__tab-button--active'));
+        tabContents.forEach(content => content.classList.remove('services__tab-content--active'));
+
+        // Add active class to clicked button and corresponding content
+        button.classList.add('services__tab-button--active');
+        
+        // Specifically target the tab content element
+        const activeTab = document.querySelector(`.services__tab-content[data-tab="${tabName}"]`);
+        if (activeTab) {
+          activeTab.classList.add('services__tab-content--active');
+        }
+      });
+    });
+  }
 
   // ─────────────────────────────────────
   // INIT
@@ -697,6 +726,7 @@
     initScrollAnimations();
     initCountUp();
     initServicesStagger();
+    initServicesTabs();
     initCareStagger();
     initAdvantages();
     initPromo();
