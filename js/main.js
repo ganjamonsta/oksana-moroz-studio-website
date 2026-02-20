@@ -301,8 +301,8 @@
   // ─────────────────────────────────────
   // MASTERY SECTION
   // ─────────────────────────────────────
-  
   let masteryAnimating = false; // Защита от быстрых кликов/свайпов
+  let masteryAnimationTimeout = null; // Track timeout to prevent double-unlock
   
   // Функция для обновления высоты контейнера в зависимости от активной панели
   function updateMasteryContainerHeight(panel) {
@@ -352,7 +352,14 @@
     // Get container width for percentage-based slide distance
     const slideDistance = container ? container.offsetWidth : 400;
 
+    // Lock animation state
     masteryAnimating = true;
+    
+    // Clear any pending timeout
+    if (masteryAnimationTimeout) {
+      clearTimeout(masteryAnimationTimeout);
+      masteryAnimationTimeout = null;
+    }
 
     // ── KEY FIX: immediately pull current panel out of document flow
     // so it won't stack with the incoming panel (both were position:relative briefly)
@@ -379,13 +386,14 @@
     target.classList.add('mastery__panel--active');
     updateMasteryContainerHeight(target);
 
-    // Safe unlock function with fallback timeout
+    // Safe unlock function
     const unlockAnimation = () => {
       masteryAnimating = false;
+      masteryAnimationTimeout = null;
     };
     
-    // Guarantee unlock after 700ms even if animations fail
-    const timeoutId = setTimeout(unlockAnimation, 700);
+    // Set fallback timeout to ensure unlock (700ms is longer than animation 500ms + buffer)
+    masteryAnimationTimeout = setTimeout(unlockAnimation, 700);
 
     // Animate panels sliding
     if (currentPanel && container) {
@@ -403,16 +411,21 @@
       gsap.to(target,
         { opacity: 1, x: 0, duration: 0.5, ease: 'power3.inOut',
           onComplete: () => {
-            clearTimeout(timeoutId);
+            // Only unlock if this completes first (before timeout)
+            if (masteryAnimationTimeout !== null) {
+              clearTimeout(masteryAnimationTimeout);
+              unlockAnimation();
+            }
             gsap.set(target, { clearProps: 'opacity,x,transform' });
-            unlockAnimation();
           }
         }
       );
     } else {
       // No previous panel or container, unlock immediately
-      clearTimeout(timeoutId);
-      unlockAnimation();
+      if (masteryAnimationTimeout !== null) {
+        clearTimeout(masteryAnimationTimeout);
+        unlockAnimation();
+      }
     }
 
     // Animate panel inner content (image + info) - synchronized for mobile
