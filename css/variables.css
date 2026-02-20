@@ -29,7 +29,7 @@
   --fs-h2:          clamp(2rem, 4vw, 3.5rem);
   --fs-h3:          clamp(1.25rem, 2vw, 1.75rem);
   --fs-body:        clamp(1.05rem, 1.3vw, 1.25rem);
-  --fs-sm:          clamp(1.1rem, 1.5vw, 1.25rem);
+  --fs-sm:          clamp(0.95rem, 1.2vw, 1.1rem);
   --fs-xs:          1rem;
 
   --fw-light:       300;
@@ -50,9 +50,9 @@
   --sp-md:          1.5rem;
   --sp-lg:          2.5rem;
   --sp-xl:          4rem;
-  --sp-2xl:         6rem;
-  --sp-xxl:         5rem;
-  --sp-3xl:         8rem;
+  --sp-2xl:         5rem;
+  --sp-3xl:         6rem;
+  --sp-4xl:         8rem;
   --sp-section:     clamp(3rem, 8vh, 5rem);
 
   /* ── Layout ── */
@@ -81,6 +81,13 @@
   --shadow-lg:      0 16px 60px rgba(0,0,0,0.5);
   --shadow-gold:    0 0 30px rgba(212, 175, 55, 0.3);
   --shadow-glow:    0 0 60px rgba(212, 175, 55, 0.15);
+
+  /* ── Gold alpha variants ── */
+  --c-gold-a06:     rgba(212, 175, 55, 0.06);
+  --c-gold-a08:     rgba(212, 175, 55, 0.08);
+  --c-gold-a10:     rgba(212, 175, 55, 0.10);
+  --c-gold-a12:     rgba(212, 175, 55, 0.12);
+  --gold-gradient:  linear-gradient(135deg, var(--c-gold-a08), rgba(212, 175, 55, 0.02));
 
   /* ── Z-index ── */
   --z-bg:           -1;

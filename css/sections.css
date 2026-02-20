@@ -89,7 +89,7 @@
   padding: 0.6rem 1.5rem;
   border: 1px solid var(--c-border-gold);
   border-radius: var(--radius-full);
-  background: rgba(212, 175, 55, 0.08);
+  background: var(--c-gold-a08);
 }
 .hero__badge-text {
   font-size: var(--fs-xs);
@@ -97,34 +97,6 @@
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
   color: var(--c-gold);
-}
-
-.hero__scroll-hint {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--c-text-muted);
-  font-size: var(--fs-xs);
-  letter-spacing: var(--ls-wide);
-  opacity: 0;
-  text-transform: uppercase;
-}
-.hero__scroll-line {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--c-gold), transparent);
-  animation: scrollLine 2s var(--ease-in-out) infinite;
-}
-@keyframes scrollLine {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  51% { transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
 
@@ -232,7 +204,7 @@
   display: flex;
   align-items: center;
   gap: var(--sp-xl);
-  background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02));
+  background: linear-gradient(135deg, var(--c-gold-a08), rgba(212,175,55,0.02));
   border: 1px solid var(--c-border-gold);
   border-radius: var(--radius-lg);
   padding: var(--sp-lg) var(--sp-xl);
@@ -300,11 +272,6 @@
   min-width: 130px;
 }
 
-/* Remove old overrides */
-.mastery > .container {
-  display: block;
-}
-
 /* ── Tabs navigation ── */
 .mastery__tabs {
   width: 100%;
@@ -314,6 +281,9 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
 }
 .mastery__tabs-nav {
   display: flex;
@@ -324,6 +294,7 @@
   box-sizing: border-box;
   width: 100%;
   padding: 0;
+  touch-action: manipulation;
 }
 .mastery__tab-btn {
   padding: var(--sp-sm) var(--sp-lg);
@@ -358,6 +329,12 @@
   opacity: 0;
   box-sizing: border-box;
   width: 100%;
+  cursor: grab;
+}
+@media (pointer: coarse) {
+  .mastery__panel {
+    cursor: auto;
+  }
 }
 .mastery__panel--active {
   display: grid;
@@ -384,20 +361,13 @@
   }
 }
 
-/* ── Container clearfix для стабилизации layout shift ── */
-.mastery__tabs::after {
-  content: '';
-  display: block;
-  clear: both;
-}
-
 /* ── Panel image ── */
 .mastery__panel-image {
   border-radius: var(--radius-lg);
   overflow: hidden;
   position: relative;
   width: 100%;
-  height: 600px;
+  height: clamp(240px, 40vw, 700px);
   min-width: 0;
 }
 .mastery__panel-image img {
@@ -435,7 +405,7 @@
   text-transform: uppercase;
   color: var(--c-gold);
   padding: 0.35rem 1rem;
-  background: rgba(212,175,55,0.1);
+  background: var(--c-gold-a10);
   border: 1px solid var(--c-border-gold);
   border-radius: var(--radius-full);
 }
@@ -494,7 +464,7 @@
   align-items: center;
   gap: var(--sp-md);
   padding: var(--sp-md);
-  background: rgba(212,175,55,0.06);
+  background: var(--c-gold-a06);
   border: 1px solid var(--c-border-gold);
   border-radius: var(--radius-md);
 }
@@ -507,7 +477,7 @@
   align-items: center;
   justify-content: center;
   color: var(--c-gold);
-  background: rgba(212,175,55,0.08);
+  background: var(--c-gold-a08);
   flex-shrink: 0;
 }
 .mastery__panel-master-name {
@@ -625,10 +595,10 @@
 
 /* ═══════ PROMO ═══════ */
 .promo__wrapper {
-  background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02));
+  background: var(--gold-gradient);
   border: 1px solid var(--c-border-gold);
   border-radius: var(--radius-xl);
-  padding: var(--sp-3xl) var(--sp-xl);
+  padding: var(--sp-4xl) var(--sp-xl);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--sp-xl);
@@ -828,7 +798,7 @@
 .fix__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--sp-xxl);
+  gap: var(--sp-2xl);
   align-items: center;
 }
 .fix__text {
@@ -887,7 +857,7 @@
 
 /* ═══════ CARE ACCENT CARD ═══════ */
 .care__card--accent {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.02));
+  background: var(--gold-gradient);
   border: 1px solid var(--c-border-gold);
 }
 .care__card-body--full {
@@ -900,7 +870,7 @@
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
   color: var(--c-gold);
-  background: rgba(212, 175, 55, 0.12);
+  background: var(--c-gold-a12);
   padding: 0.3rem 0.8rem;
   border-radius: var(--radius-full);
   margin-bottom: var(--sp-md);

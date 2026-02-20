@@ -111,7 +111,7 @@
     function closeNav() {
       burger.classList.remove('is-active');
       nav.classList.remove('is-open');
-      document.body.style.overflow = '';
+      document.body.classList.remove('nav-open');
       if (lenis) lenis.start();
     }
 
@@ -123,10 +123,10 @@
       
       // Block scroll
       if (isOpening) {
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('nav-open');
         if (lenis) lenis.stop();
       } else {
-        document.body.style.overflow = '';
+        document.body.classList.remove('nav-open');
         if (lenis) lenis.start();
       }
     });
@@ -289,7 +289,7 @@
             ease: 'power2.out',
             snap: { innerText: 1 },
             onUpdate: function () {
-              counter.textContent = Math.round(this.targets()[0].innerText);
+              counter.textContent = Math.round(parseFloat(this.targets()[0].innerText) || 0);
             }
           });
         }
@@ -299,13 +299,108 @@
 
 
   // ─────────────────────────────────────
-  // SWIPER — REMOVED (merged into Mastery)
+  // MASTERY SECTION
   // ─────────────────────────────────────
+  
+  // Функция для активации таба по его ключу
+  function activateMasteryTab(targetKey, tabButtons, panels) {
+    // Find the button with matching data-mastery
+    const button = Array.from(tabButtons).find(btn => btn.getAttribute('data-mastery') === targetKey);
+    if (!button) return;
 
+    // Don't re-animate if already active
+    if (button.classList.contains('mastery__tab-btn--active')) return;
 
-  // ─────────────────────────────────────
-  // MASTERY SECTION (replaces services + portfolio + team)
-  // ─────────────────────────────────────
+    // Remove active from all buttons
+    tabButtons.forEach(btn => btn.classList.remove('mastery__tab-btn--active'));
+    button.classList.add('mastery__tab-btn--active');
+
+    // Hide all panels
+    panels.forEach(panel => {
+      panel.classList.remove('mastery__panel--active');
+    });
+
+    // Show target panel with animation
+    const target = document.querySelector(`.mastery__panel[data-mastery="${targetKey}"]`);
+    if (target) {
+      target.classList.add('mastery__panel--active');
+
+      // Animate panel content directly (replaces MutationObserver approach)
+      const img = target.querySelector('.mastery__panel-image img');
+      const info = target.querySelector('.mastery__panel-info');
+      if (img) {
+        gsap.fromTo(img,
+          { scale: 1.1, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.7, ease: 'power3.out' }
+        );
+      }
+      if (info) {
+        gsap.fromTo(info,
+          { x: 30, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out', delay: 0.1 }
+        );
+      }
+    }
+
+    // Scroll only the tabs-nav container (NOT the page) to show active button
+    const tabsNav = button.closest('.mastery__tabs-nav');
+    if (tabsNav && tabsNav.scrollWidth > tabsNav.clientWidth) {
+      const scrollLeft = button.offsetLeft - tabsNav.clientWidth / 2 + button.offsetWidth / 2;
+      tabsNav.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
+    }
+  }
+
+  // Функция для инициализации свайпов на мобильных устройствах
+  function initMasterySwipe() {
+    const tabsContainer = document.querySelector('.mastery__tabs');
+    const tabButtons = document.querySelectorAll('.mastery__tab-btn');
+    const panels = document.querySelectorAll('.mastery__panel');
+
+    if (!tabsContainer || tabButtons.length === 0) return;
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const swipeThreshold = 50; // минимальное расстояние свайпа в пикселях
+
+    tabsContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    tabsContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+      const diff = touchStartX - touchEndX;
+      const absDiff = Math.abs(diff);
+
+      // Если расстояние меньше порога, игнорируем
+      if (absDiff < swipeThreshold) return;
+
+      // Найдём текущую активную кнопку
+      const activeButton = document.querySelector('.mastery__tab-btn--active');
+      if (!activeButton) return;
+
+      const currentIndex = Array.from(tabButtons).indexOf(activeButton);
+      let nextIndex = currentIndex;
+
+      // Свайп влево (diff > 0) = следующий таб
+      if (diff > 0) {
+        nextIndex = (currentIndex + 1) % tabButtons.length;
+      }
+      // Свайп вправо (diff < 0) = предыдущий таб
+      else if (diff < 0) {
+        nextIndex = (currentIndex - 1 + tabButtons.length) % tabButtons.length;
+      }
+
+      // Активируем нужный таб
+      const nextButton = tabButtons[nextIndex];
+      const nextKey = nextButton.getAttribute('data-mastery');
+      activateMasteryTab(nextKey, tabButtons, panels);
+    }
+  }
+
   function initMasteryTabs() {
     const tabButtons = document.querySelectorAll('.mastery__tab-btn');
     const panels = document.querySelectorAll('.mastery__panel');
@@ -317,55 +412,12 @@
       button.addEventListener('click', (e) => {
         e.preventDefault();
         const targetKey = button.getAttribute('data-mastery');
-
-        // Don't re-animate if already active
-        if (button.classList.contains('mastery__tab-btn--active')) return;
-
-        // Remove active from all buttons
-        tabButtons.forEach(btn => btn.classList.remove('mastery__tab-btn--active'));
-        button.classList.add('mastery__tab-btn--active');
-
-        // Hide all panels
-        panels.forEach(panel => {
-          panel.classList.remove('mastery__panel--active');
-          panel.style.display = 'none';
-          panel.style.opacity = '0';
-        });
-
-        // Show target panel with animation
-        const target = document.querySelector(`.mastery__panel[data-mastery="${targetKey}"]`);
-        if (target) {
-          target.classList.add('mastery__panel--active');
-          target.style.display = '';
-          target.style.opacity = '';
-
-          // Animate panel content directly (replaces MutationObserver approach)
-          const img = target.querySelector('.mastery__panel-image img');
-          const info = target.querySelector('.mastery__panel-info');
-          if (img) {
-            gsap.fromTo(img,
-              { scale: 1.1, opacity: 0 },
-              { scale: 1, opacity: 1, duration: 0.7, ease: 'power3.out' }
-            );
-          }
-          if (info) {
-            gsap.fromTo(info,
-              { x: 30, opacity: 0 },
-              { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out', delay: 0.1 }
-            );
-          }
-        }
-
-        // Scroll only the tabs-nav container (NOT the page) to show active button
-        // scrollIntoView() is NOT used because it scrolls ALL ancestors including body/html,
-        // which causes the entire page to shift left on mobile
-        const tabsNav = button.closest('.mastery__tabs-nav');
-        if (tabsNav && tabsNav.scrollWidth > tabsNav.clientWidth) {
-          const scrollLeft = button.offsetLeft - tabsNav.clientWidth / 2 + button.offsetWidth / 2;
-          tabsNav.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
-        }
+        activateMasteryTab(targetKey, tabButtons, panels);
       });
     });
+
+    // Инициализируем свайпы на мобильных устройствах
+    initMasterySwipe();
   }
 
   // ─────────────────────────────────────
@@ -531,7 +583,7 @@
 
         gsap.to(btn, {
           x: x * 0.15,
-          y: y * 0.15,
+          y: y * 0.15 - 2, // -2px for subtle lift (replaces CSS hover translateY)
           duration: 0.3,
           ease: 'power2.out',
         });
@@ -566,8 +618,7 @@
         glow.style.opacity = '1';
         isVisible = true;
       }
-      glow.style.left = e.clientX + 'px';
-      glow.style.top = e.clientY + 'px';
+      glow.style.transform = `translate(${e.clientX - 150}px, ${e.clientY - 150}px)`;
     });
 
     document.addEventListener('mouseleave', () => {
@@ -575,10 +626,6 @@
       isVisible = false;
     });
   }
-
-  // ─────────────────────────────────────
-  // SERVICES TABS — REMOVED (merged into Mastery)
-  // ─────────────────────────────────────
 
   // ─────────────────────────────────────
   // INIT
@@ -596,6 +643,21 @@
     }
 
     gsap.registerPlugin(ScrollTrigger);
+
+    // Respect prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      document.querySelectorAll('.anim-fade').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      // Only init non-animated features
+      initMobileNav();
+      initHeaderScroll();
+      initMasteryTabs();
+      initSmoothAnchors();
+      return;
+    }
 
     // Initialize everything
     initLenis();

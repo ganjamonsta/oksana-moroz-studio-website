@@ -39,7 +39,6 @@
 
 .btn--lg {
   padding: 1.2rem 3rem;
-  font-size: var(--fs-sm);
 }
 
 .btn--sm {
@@ -56,13 +55,11 @@
   .btn--gold:hover {
     background: var(--c-gold-light);
     box-shadow: var(--shadow-gold);
-    transform: translateY(-2px);
   }
 
   .btn--outline:hover {
     border-color: var(--c-gold);
     color: var(--c-gold);
-    transform: translateY(-2px);
   }
 
   .btn:hover .btn__arrow {

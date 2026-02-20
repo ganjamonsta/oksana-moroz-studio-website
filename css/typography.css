@@ -1,16 +1,9 @@
 /* ═══════════════════════════════════════
-   TYPOGRAPHY
+   TYPOGRAPHY & LAYOUT PRIMITIVES
    ═══════════════════════════════════════ */
 
-/* ─────────────────────────────────────── */
-/* FONT FACE FALLBACK NORMALIZATION */
-/* ─────────────────────────────────────── */
-@supports (font-size-adjust: ex-height) {
-  .container {
-    font-size-adjust: 0.5;
-  }
-}
-
+/* ────────────────────────────────────── */
+/* LAYOUT PRIMITIVES */
 /* ────────────────────────────────────── */
 .container {
   width: 100%;
@@ -18,7 +11,6 @@
   margin: 0 auto;
   padding-left: var(--container-pad);
   padding-right: var(--container-pad);
-  box-sizing: border-box;
 }
 
 /* ── Section labels ── */
@@ -59,4 +51,5 @@
 .section {
   padding-top: var(--sp-section);
   padding-bottom: var(--sp-section);
+  overflow: hidden;
 }

@@ -113,14 +113,8 @@
     align-self: auto;
     background: linear-gradient(to right, transparent, var(--c-gold), transparent);
   }
-  .mastery__panel-image {
-    height: 420px;
-  }
 
   /* Care */
-  .care__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .care__card:last-child {
     grid-column: 1 / -1;
   }
@@ -188,7 +182,7 @@
   /* Marquee mobile fix */
   .marquee {
     width: 100%;
-    max-width: 100vw;
+    max-width: 100%;
     overflow-x: hidden;
   }
   .marquee__item {
@@ -242,10 +236,6 @@
   .mastery__panel--active {
     grid-template-columns: 1fr;
     gap: var(--sp-md);
-  }
-  .mastery__panel-image {
-    height: 240px;
-    max-height: 100%;
   }
   .mastery__panel-info {
     padding: var(--sp-md);
@@ -371,12 +361,6 @@
   .contacts__map {
     min-height: 250px;
   }
-
-  /* Section spacing */
-  .section {
-    padding-top: clamp(3rem, 8vh, 5rem);
-    padding-bottom: clamp(3rem, 8vh, 5rem);
-  }
 }
 
 
@@ -411,28 +395,13 @@
   .hero__badge-text {
     font-size: 0.65rem;
   }
-  
-  /* Mastery */
-  .mastery__panel-image {
-    height: 200px;
-  }
 }
 
-
-/* ── Wide Desktop (≥ 1200px) ── */
-@media (min-width: 1200px) {
-  .mastery__panel-image {
-    height: 620px;
-  }
-}
 
 /* ── Large Desktop (≥ 1600px) ── */
 @media (min-width: 1600px) {
   :root {
     --container-max: 1400px;
-  }
-  .mastery__panel-image {
-    height: 700px;
   }
 }
 
