@@ -302,8 +302,12 @@
   // MASTERY SECTION
   // ─────────────────────────────────────
   
+  let masteryAnimating = false; // Защита от быстрых кликов/свайпов
+  
   // Функция для активации таба по его ключу
   function activateMasteryTab(targetKey, tabButtons, panels) {
+    // Block if animation in progress
+    if (masteryAnimating) return;
     // Find the button with matching data-mastery
     const button = Array.from(tabButtons).find(btn => btn.getAttribute('data-mastery') === targetKey);
     if (!button) return;
@@ -311,35 +315,75 @@
     // Don't re-animate if already active
     if (button.classList.contains('mastery__tab-btn--active')) return;
 
-    // Remove active from all buttons
-    tabButtons.forEach(btn => btn.classList.remove('mastery__tab-btn--active'));
-    button.classList.add('mastery__tab-btn--active');
-
-    // Hide all panels
-    panels.forEach(panel => {
-      panel.classList.remove('mastery__panel--active');
-    });
-
-    // Show target panel with animation
+    // Find the target panel
     const target = document.querySelector(`.mastery__panel[data-mastery="${targetKey}"]`);
-    if (target) {
-      target.classList.add('mastery__panel--active');
+    if (!target) return;
 
-      // Animate panel content directly (replaces MutationObserver approach)
-      const img = target.querySelector('.mastery__panel-image img');
-      const info = target.querySelector('.mastery__panel-info');
-      if (img) {
-        gsap.fromTo(img,
-          { scale: 1.1, opacity: 0 },
-          { scale: 1, opacity: 1, duration: 0.7, ease: 'power3.out' }
-        );
-      }
-      if (info) {
-        gsap.fromTo(info,
-          { x: 30, opacity: 0 },
-          { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out', delay: 0.1 }
-        );
-      }
+    // Get current and target indices
+    const currentIndex = Array.from(panels).findIndex(p => p.classList.contains('mastery__panel--active'));
+    const nextIndex = Array.from(panels).indexOf(target);
+
+    // Determine scroll direction
+    const direction = nextIndex > currentIndex ? 1 : -1;
+
+    // Get the active panel for animation
+    const currentPanel = document.querySelector('.mastery__panel--active');
+    const container = document.querySelector('.mastery__panels-container');
+
+    // Remove active from all
+    tabButtons.forEach(btn => btn.classList.remove('mastery__tab-btn--active'));
+    panels.forEach(panel => panel.classList.remove('mastery__panel--active'));
+
+    // Add active to new
+    button.classList.add('mastery__tab-btn--active');
+    target.classList.add('mastery__panel--active');
+
+    // Get container width for percentage-based slide distance
+    const slideDistance = container ? container.offsetWidth : 400;
+
+    masteryAnimating = true;
+
+    // Animate panels sliding
+    if (currentPanel && container) {
+      // Old panel slides OUT in opposite direction
+      gsap.fromTo(currentPanel,
+        { opacity: 1, x: 0, position: 'absolute', top: 0, left: 0, width: '100%', visibility: 'visible', height: 'auto' },
+        { opacity: 0, x: direction * -slideDistance * 0.3, duration: 0.5, ease: 'power3.inOut',
+          onComplete: () => {
+            gsap.set(currentPanel, { clearProps: 'all' });
+          }
+        }
+      );
+
+      // New panel slides IN from the other side
+      gsap.fromTo(target,
+        { opacity: 0, x: direction * slideDistance * 0.3 },
+        { opacity: 1, x: 0, duration: 0.5, ease: 'power3.inOut',
+          onComplete: () => {
+            gsap.set(target, { clearProps: 'transform' });
+            masteryAnimating = false;
+          }
+        }
+      );
+    } else {
+      masteryAnimating = false;
+    }
+
+    // Animate panel inner content (image + info) with stagger
+    const img = target.querySelector('.mastery__panel-image img');
+    const info = target.querySelector('.mastery__panel-info');
+    
+    if (img) {
+      gsap.fromTo(img,
+        { scale: 1.06, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6, ease: 'power3.out', delay: 0.2 }
+      );
+    }
+    if (info) {
+      gsap.fromTo(info,
+        { x: direction * 40, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.5, ease: 'power3.out', delay: 0.25 }
+      );
     }
 
     // Scroll only the tabs-nav container (NOT the page) to show active button
@@ -352,21 +396,21 @@
 
   // Функция для инициализации свайпов на мобильных устройствах
   function initMasterySwipe() {
-    const tabsContainer = document.querySelector('.mastery__tabs');
+    const container = document.querySelector('.mastery__panels-container');
     const tabButtons = document.querySelectorAll('.mastery__tab-btn');
     const panels = document.querySelectorAll('.mastery__panel');
 
-    if (!tabsContainer || tabButtons.length === 0) return;
+    if (!container || tabButtons.length === 0) return;
 
     let touchStartX = 0;
     let touchEndX = 0;
     const swipeThreshold = 50; // минимальное расстояние свайпа в пикселях
 
-    tabsContainer.addEventListener('touchstart', (e) => {
+    container.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
     }, false);
 
-    tabsContainer.addEventListener('touchend', (e) => {
+    container.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
       handleSwipe();
     }, false);
@@ -404,7 +448,7 @@
   function initMasteryTabs() {
     const tabButtons = document.querySelectorAll('.mastery__tab-btn');
     const panels = document.querySelectorAll('.mastery__panel');
-    const tabsContainer = document.querySelector('.mastery__tabs');
+    const container = document.querySelector('.mastery__panels-container');
 
     if (tabButtons.length === 0 || panels.length === 0) return;
 

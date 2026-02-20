@@ -233,7 +233,7 @@
   }
 
   /* Mastery */
-  .mastery__panel--active {
+  .mastery__panel {
     grid-template-columns: 1fr;
     gap: var(--sp-md);
   }
