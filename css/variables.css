@@ -15,16 +15,14 @@
   --c-gold:         #d4af37;
   --c-gold-light:   #e8c547;
   --c-gold-dark:    #b8941f;
-  --c-copper:       #c79d5c;
-
   --c-white:        #ffffff;
   --c-text:         #e8e8e8;
   --c-text-muted:   #999999;
   --c-text-subtle:  #666666;
 
   /* ── Typography ── */
-  --ff-heading:     'Cormorant Garamond', 'Georgia', serif;
-  --ff-body:        'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --ff-heading:     'Cormorant Garamond', 'Garamond', 'Palatino', serif;
+  --ff-body:        'Montserrat', 'Trebuchet MS', 'Segoe UI', sans-serif;
 
   --fs-hero:        clamp(3.5rem, 10vw, 8rem);
   --fs-h1:          clamp(2.5rem, 5vw, 4.5rem);
@@ -34,10 +32,10 @@
   --fs-sm:          clamp(1.1rem, 1.5vw, 1.25rem);
   --fs-xs:          1rem;
 
-  --fw-light:       400;
-  --fw-regular:     500;
-  --fw-medium:      600;
-  --fw-semibold:    700;
+  --fw-light:       300;
+  --fw-regular:     400;
+  --fw-medium:      500;
+  --fw-semibold:    600;
   --fw-bold:        700;
 
   --lh-heading:     1.1;
@@ -53,8 +51,9 @@
   --sp-lg:          2.5rem;
   --sp-xl:          4rem;
   --sp-2xl:         6rem;
+  --sp-xxl:         5rem;
   --sp-3xl:         8rem;
-  --sp-section:     clamp(5rem, 12vh, 9rem);
+  --sp-section:     clamp(3rem, 8vh, 5rem);
 
   /* ── Layout ── */
   --container-max:  1280px;

@@ -2,7 +2,16 @@
    TYPOGRAPHY
    ═══════════════════════════════════════ */
 
-/* ── Container ── */
+/* ─────────────────────────────────────── */
+/* FONT FACE FALLBACK NORMALIZATION */
+/* ─────────────────────────────────────── */
+@supports (font-size-adjust: ex-height) {
+  .container {
+    font-size-adjust: 0.5;
+  }
+}
+
+/* ────────────────────────────────────── */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -17,7 +26,7 @@
   display: inline-block;
   font-family: var(--ff-body);
   font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-bold);
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   color: var(--c-gold);
@@ -31,8 +40,6 @@
   font-weight: var(--fw-light);
   color: var(--c-white);
   margin-bottom: var(--sp-md);
-  word-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 .section__title em {
@@ -46,8 +53,6 @@
   color: var(--c-text-muted);
   max-width: 600px;
   margin-bottom: var(--sp-xl);
-  word-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 /* ── Section spacing ── */

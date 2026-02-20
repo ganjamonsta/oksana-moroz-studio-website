@@ -22,25 +22,15 @@
   }
 }
 
-/* ── Compact header (≤ 900px) ── */
-@media (max-width: 900px) {
-  .header__logo-full {
-    display: none;
-  }
-  .header__nav-list {
-    gap: 1.5rem;
-  }
-  .header__nav-link {
-    font-size: 0.75rem;
-  }
-}
-
 /* ── Tablet (≤ 1024px) ── */
 @media (max-width: 1024px) {
   .header__nav {
     display: none;
   }
   .header__phone {
+    display: none;
+  }
+  .header__logo-full {
     display: none;
   }
   .header__burger {
@@ -111,9 +101,20 @@
     display: none;
   }
 
-  /* Services */
-  .services__grid {
-    grid-template-columns: repeat(2, 1fr);
+  /* Mastery */
+  .mastery__header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-md);
+  }
+  .mastery__header-divider {
+    width: 100%;
+    height: 1px;
+    align-self: auto;
+    background: linear-gradient(to right, transparent, var(--c-gold), transparent);
+  }
+  .mastery__panel-image {
+    height: 420px;
   }
 
   /* Care */
@@ -160,12 +161,6 @@
     overflow: hidden;
   }
 
-  /* Team */
-  .team__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--sp-lg);
-  }
-
   /* Fix */
   .fix__grid {
     grid-template-columns: 1fr;
@@ -188,24 +183,6 @@
   .btn--lg {
     padding: 1rem 2rem;
   }
-
-  /* Typography fixes - more specific selectors */
-  .section__title,
-  .services__card-title,
-  .services__card-desc,
-  .care__card-title,
-  .care__card-desc,
-  .promo__title,
-  .promo__card-text,
-  .cta__title,
-  .cta__desc,
-  .team__card-desc,
-  .about__text,
-  .fix__text {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-
 
 
   /* Marquee mobile fix */
@@ -248,39 +225,59 @@
     gap: var(--sp-md);
   }
 
-  /* Services */
-  .services__grid {
-    grid-template-columns: 1fr;
+  /* Mastery header */
+  .mastery__header {
+    padding: var(--sp-md);
   }
-
-  .services__card {
-    padding: var(--sp-lg);
-  }
-
-  .services__card-title,
-  .services__card-desc {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-
-  .services__tabs-nav {
+  .mastery__header-buttons {
+    flex-direction: column;
     gap: var(--sp-xs);
+  }
+  .mastery__header-buttons .btn {
     width: 100%;
+    min-width: auto;
+  }
+
+  /* Mastery */
+  .mastery__panel--active {
+    grid-template-columns: 1fr;
+    gap: var(--sp-md);
+  }
+  .mastery__panel-image {
+    height: 240px;
+    max-height: 100%;
+  }
+  .mastery__panel-info {
+    padding: var(--sp-md);
+  }
+  .mastery__panel-meta {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-sm);
+  }
+  .mastery__tabs-nav {
+    gap: var(--sp-xs);
+    max-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding-bottom: var(--sp-xs);
+    box-sizing: border-box;
   }
-  .services__tabs-nav::-webkit-scrollbar {
+  .mastery__tabs-nav::-webkit-scrollbar {
     display: none;
   }
-
-  .services__tab-button {
+  .mastery__tab-btn {
     padding: var(--sp-xs) var(--sp-sm);
-    font-size: 0.75rem;
-    white-space: normal;
-    text-align: center;
-    min-width: 90px;
+    font-size: 0.7rem;
     flex-shrink: 0;
+  }
+  .mastery__cta-buttons .btn,
+  .mastery__panel-btn {
+    width: 100%;
+    max-width: none;
+    min-width: auto;
   }
 
   /* Care */
@@ -307,16 +304,7 @@
     min-width: 48px;
   }
 
-  /* Team */
-  .team__grid {
-    grid-template-columns: 1fr;
-  }
-  .team__grid .team__card:last-child {
-    max-width: 100%;
-  }
-  .team__card {
-    padding: var(--sp-lg);
-  }
+
 
   /* Promo cards */
   .promo__cards {
@@ -328,46 +316,8 @@
   .promo__card--wide {
     grid-column: auto;
   }
-  .promo__card-title,
-  .promo__card-desc {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
 
-  /* Portfolio */
-  .portfolio__slide {
-    width: 300px;
-    height: 300px;
-  }
-  .portfolio__swiper {
-    width: 100%;
-    overflow: hidden !important;
-  }
-  .portfolio__content-wrap {
-    max-width: 100%;
-    padding: 0 var(--container-pad);
-    grid-template-columns: 1fr;
-  }
-  .portfolio__nav {
-    width: 100%;
-    margin-top: var(--sp-md);
-    display: flex;
-    justify-content: center;
-    gap: var(--sp-lg);
-  }
-  .portfolio__info {
-    padding: var(--sp-lg);
-    margin-top: 0.5rem;
-  }
-  .portfolio__info-content {
-    gap: 0.75rem;
-  }
-  .portfolio__info-label {
-    display: none;
-  }
-  .portfolio__info-title {
-    font-size: 1.25rem;
-  }
+
 
   /* Header on small screens */
   .header__inner {
@@ -403,7 +353,6 @@
 
   /* CTA */
   .cta__buttons,
-  .services__cta-buttons,
   .fix__buttons {
     flex-direction: column;
     align-items: center;
@@ -412,7 +361,6 @@
     padding: 0 var(--sp-sm);
   }
   .cta__buttons .btn,
-  .services__cta-buttons .btn,
   .fix__buttons .btn {
     width: 100%;
     max-width: 280px;
@@ -464,65 +412,17 @@
     font-size: 0.65rem;
   }
   
-  /* Services */
-  .services__card {
-    padding: var(--sp-md);
-  }
-  
-  /* Portfolio */
-  .portfolio__slide {
-    width: 260px;
-    height: 260px;
+  /* Mastery */
+  .mastery__panel-image {
+    height: 200px;
   }
 }
 
 
 /* ── Wide Desktop (≥ 1200px) ── */
 @media (min-width: 1200px) {
-  .portfolio__content-wrap {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 520px;
-    align-items: stretch;
-  }
-  .portfolio__info {
-    display: flex;
-    pointer-events: auto;
-    overflow-y: auto;
-    background: rgba(20, 20, 20, 0.6);
-    padding: 2.5rem;
-    margin-top: 0;
-  }
-  .portfolio__info-title {
-    font-size: 1.75rem;
-  }
-  .portfolio__info-desc {
-    font-size: 1rem;
-    -webkit-line-clamp: unset;
-    line-clamp: unset;
-    overflow: visible;
-  }
-  .portfolio__info-details {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1.25rem 0;
-    border-bottom: 1px solid var(--c-border);
-    margin: auto 0 0 0;
-  }
-  .portfolio__info .btn {
-    display: block;
-  }
-  .portfolio__swiper {
-    overflow: hidden;
-    height: 100%;
-  }
-  .portfolio__swiper .swiper-wrapper {
-    height: 100%;
-  }
-  .portfolio__slide {
-    width: 100%;
-    height: 100%;
-    max-width: none;
+  .mastery__panel-image {
+    height: 620px;
   }
 }
 
@@ -531,8 +431,8 @@
   :root {
     --container-max: 1400px;
   }
-  .portfolio__content-wrap {
-    grid-template-rows: 580px;
+  .mastery__panel-image {
+    height: 700px;
   }
 }
 

@@ -19,12 +19,35 @@
     }, 700);
   }
 
-  window.addEventListener('load', () => {
-    setTimeout(hidePreloader, 600);
-  });
+  // Wait for fonts to load before showing content
+  async function initPreloader() {
+    if (!preloader) return;
+    
+    try {
+      // Wait for all fonts to be loaded
+      if (document.fonts && document.fonts.ready) {
+        await document.fonts.ready;
+      }
+    } catch (e) {
+      console.warn('Font Loading API not available:', e);
+    }
+    
+    // Also wait for page to fully load
+    if (document.readyState === 'loading') {
+      await new Promise(resolve => {
+        window.addEventListener('load', resolve, { once: true });
+      });
+    }
+    
+    // Hide preloader
+    hidePreloader();
+  }
 
-  // Fallback: remove after 4s max
-  setTimeout(hidePreloader, 4000);
+  // Start preloader logic
+  initPreloader();
+
+  // Fallback: remove after 5s max (safety net)
+  setTimeout(hidePreloader, 5000);
 
 
   // ─────────────────────────────────────
@@ -43,18 +66,6 @@
       orientation: 'vertical',
       smoothWheel: true,
     });
-
-    // Prevent Lenis from interfering with Swiper touch events
-    const swiperEl = document.querySelector('.portfolio__swiper');
-    if (swiperEl) {
-      swiperEl.addEventListener('touchstart', (e) => {
-        if (lenis) lenis.stop();
-      }, { passive: true });
-
-      swiperEl.addEventListener('touchend', (e) => {
-        if (lenis) lenis.start();
-      }, { passive: true });
-    }
 
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -199,8 +210,9 @@
     }, '-=0.3');
     
     // Animate scroll hint if it exists
-    if (document.querySelector('#scrollHint')) {
-      tl.to('#scrollHint', {
+    const scrollHint = document.querySelector('.hero__scroll-hint');
+    if (scrollHint) {
+      tl.to(scrollHint, {
         opacity: 1,
         duration: 0.6
       }, '-=0.2');
@@ -213,7 +225,8 @@
   // ─────────────────────────────────────
   function initScrollAnimations() {
     // Generic fade-in for elements outside hero
-    const animElements = document.querySelectorAll('.section .anim-fade');
+    // Exclude elements that have dedicated stagger animations
+    const animElements = document.querySelectorAll('.section .anim-fade:not(.care__card):not(.advantages__item)');
 
     animElements.forEach((el, i) => {
       const anim = el.dataset.anim || 'fade-up';
@@ -284,171 +297,74 @@
 
 
   // ─────────────────────────────────────
-  // SWIPER — Portfolio Carousel
+  // SWIPER — REMOVED (merged into Mastery)
   // ─────────────────────────────────────
-  function initPortfolioSwiper() {
-    // Wait for Swiper library to load
-    if (typeof Swiper === 'undefined') {
-      console.warn('Swiper library not loaded');
-      return;
-    }
 
-    const swiperEl = document.querySelector('.portfolio__swiper');
-    if (!swiperEl) {
-      console.warn('Portfolio swiper element not found');
-      return;
-    }
 
-    const currentEl = document.querySelector('.portfolio__current');
-    const totalEl = document.querySelector('.portfolio__total');
-    const infoCard = document.querySelector('.portfolio__info-content');
-    const infoBox = document.querySelector('.portfolio__info');
-    
-    let previousIndex = 0;
+  // ─────────────────────────────────────
+  // MASTERY SECTION (replaces services + portfolio + team)
+  // ─────────────────────────────────────
+  function initMasteryTabs() {
+    const tabButtons = document.querySelectorAll('.mastery__tab-btn');
+    const panels = document.querySelectorAll('.mastery__panel');
+    const tabsContainer = document.querySelector('.mastery__tabs');
 
-    function updateInfoCard(slideIndex, direction = 'next') {
-      if (!infoCard || !infoBox) return;
-      const slides = swiperEl.querySelectorAll('.swiper-slide');
-      const slide = slides[slideIndex];
-      if (!slide) return;
+    if (tabButtons.length === 0 || panels.length === 0) return;
 
-      const title = slide.dataset.title || 'Работа';
-      const desc = slide.dataset.desc || '';
-      const time = slide.dataset.time || '';
-      const complexity = slide.dataset.complexity || '';
+    tabButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetKey = button.getAttribute('data-mastery');
 
-      const titleEl = infoCard.querySelector('.portfolio__info-title');
-      const descEl = infoCard.querySelector('.portfolio__info-desc');
-      const timeEl = infoCard.querySelector('.portfolio__info-detail-value');
-      const complexityEl = infoCard.querySelectorAll('.portfolio__info-detail-value')[1];
+        // Don't re-animate if already active
+        if (button.classList.contains('mastery__tab-btn--active')) return;
 
-      // Fade out current content
-      infoCard.classList.add('fade-out');
-      
-      // Remove animation classes
-      infoCard.classList.remove('slide-left', 'slide-right');
-      
-      // Update content while fading out
-      setTimeout(() => {
-        if (titleEl) titleEl.textContent = title;
-        if (descEl) descEl.textContent = desc;
-        if (timeEl) timeEl.textContent = time;
-        if (complexityEl) complexityEl.textContent = complexity;
-        
-        // Remove fade-out class to trigger fade-in
-        infoCard.classList.remove('fade-out');
-        
-        // Force reflow to restart animation
-        void infoCard.offsetWidth;
-        
-        // Add slide animation class based on direction
-        if (direction === 'next') {
-          infoCard.classList.add('slide-right');
-        } else {
-          infoCard.classList.add('slide-left');
-        }
-      }, 75);
-    }
+        // Remove active from all buttons
+        tabButtons.forEach(btn => btn.classList.remove('mastery__tab-btn--active'));
+        button.classList.add('mastery__tab-btn--active');
 
-    try {
-      const swiper = new Swiper(swiperEl, {
-        slidesPerView: 'auto',
-        spaceBetween: 16,
-        centeredSlides: false,
-        grabCursor: true,
-        speed: 800,
-        allowTouchMove: true,
-        simulateTouch: true,
-        touchRatio: 1,
-        touchStartForce: 0,
-        resistanceRatio: 0.85,
-        touchStartPreventDefault: false,
-        touchMoveStopPropagation: false,
-        passiveListeners: true,
-        mousewheel: false,
-        // Always keep navigation enabled on all breakpoints
-        watchOverflow: false,
-        navigation: {
-          prevEl: '.portfolio__arrow--prev',
-          nextEl: '.portfolio__arrow--next',
-        },
-        breakpoints: {
-          320: {
-            spaceBetween: 12,
-          },
-          640: {
-            spaceBetween: 16,
-          },
-          768: {
-            spaceBetween: 20,
-          },
-          1024: {
-            spaceBetween: 24,
-          },
-        },
-        on: {
-          slideChange: function () {
-            const direction = this.activeIndex > previousIndex ? 'next' : 'prev';
-            previousIndex = this.activeIndex;
-            
-            if (currentEl) {
-              currentEl.textContent = String(this.activeIndex + 1).padStart(2, '0');
-            }
-            updateInfoCard(this.activeIndex, direction);
-          },
-          init: function () {
-            if (totalEl) {
-              totalEl.textContent = String(this.slides.length).padStart(2, '0');
-            }
-            if (currentEl) {
-              currentEl.textContent = '01';
-            }
-            updateInfoCard(0, 'next');
-          },
-          touchStart: function () {
-            // Stop Lenis when touching swiper (desktop only; on mobile Lenis is off)
-            if (lenis) lenis.stop();
-          },
-          touchEnd: function () {
-            // Resume Lenis after swipe
-            if (lenis) lenis.start();
+        // Hide all panels
+        panels.forEach(panel => {
+          panel.classList.remove('mastery__panel--active');
+          panel.style.display = 'none';
+          panel.style.opacity = '0';
+        });
+
+        // Show target panel with animation
+        const target = document.querySelector(`.mastery__panel[data-mastery="${targetKey}"]`);
+        if (target) {
+          target.classList.add('mastery__panel--active');
+          target.style.display = '';
+          target.style.opacity = '';
+
+          // Animate panel content directly (replaces MutationObserver approach)
+          const img = target.querySelector('.mastery__panel-image img');
+          const info = target.querySelector('.mastery__panel-info');
+          if (img) {
+            gsap.fromTo(img,
+              { scale: 1.1, opacity: 0 },
+              { scale: 1, opacity: 1, duration: 0.7, ease: 'power3.out' }
+            );
+          }
+          if (info) {
+            gsap.fromTo(info,
+              { x: 30, opacity: 0 },
+              { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out', delay: 0.1 }
+            );
           }
         }
+
+        // Scroll only the tabs-nav container (NOT the page) to show active button
+        // scrollIntoView() is NOT used because it scrolls ALL ancestors including body/html,
+        // which causes the entire page to shift left on mobile
+        const tabsNav = button.closest('.mastery__tabs-nav');
+        if (tabsNav && tabsNav.scrollWidth > tabsNav.clientWidth) {
+          const scrollLeft = button.offsetLeft - tabsNav.clientWidth / 2 + button.offsetWidth / 2;
+          tabsNav.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
+        }
       });
-
-      console.log('Portfolio Swiper initialized successfully');
-    } catch (error) {
-      console.error('Error initializing Portfolio Swiper:', error);
-    }
-  }
-
-
-  // ─────────────────────────────────────
-  // SERVICES CARDS STAGGER
-  // ─────────────────────────────────────
-  function initServicesStagger() {
-    const cards = document.querySelectorAll('.services__card');
-    if (!cards.length) return;
-
-    gsap.fromTo(cards, {
-      opacity: 0,
-      y: 60,
-      scale: 0.95,
-    }, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '.services__grid',
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      }
     });
   }
-
 
   // ─────────────────────────────────────
   // CARE CARDS STAGGER
@@ -577,21 +493,22 @@
   // SMOOTH ANCHOR SCROLLING
   // ─────────────────────────────────────
   function initSmoothAnchors() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', (e) => {
-        const targetId = anchor.getAttribute('href');
-        if (targetId === '#') return;
-        const target = document.querySelector(targetId);
-        if (!target) return;
+    document.addEventListener('click', (e) => {
+      const anchor = e.target.closest('a[href^="#"]');
+      if (!anchor) return;
 
-        e.preventDefault();
+      const targetId = anchor.getAttribute('href');
+      if (targetId === '#') return;
+      const target = document.querySelector(targetId);
+      if (!target) return;
 
-        if (lenis) {
-          lenis.scrollTo(target, { offset: -80 });
-        } else {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
+      e.preventDefault();
+
+      if (lenis) {
+        lenis.scrollTo(target, { offset: -80 });
+      } else {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   }
 
@@ -638,19 +555,6 @@
 
     const glow = document.createElement('div');
     glow.className = 'cursor-glow';
-    glow.style.cssText = `
-      position: fixed;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-      transform: translate(-50%, -50%);
-      will-change: left, top;
-      transition: opacity 0.3s;
-      opacity: 0;
-    `;
     document.body.appendChild(glow);
 
     let isVisible = false;
@@ -671,34 +575,8 @@
   }
 
   // ─────────────────────────────────────
-  // SERVICES TABS
+  // SERVICES TABS — REMOVED (merged into Mastery)
   // ─────────────────────────────────────
-  function initServicesTabs() {
-    const tabButtons = document.querySelectorAll('.services__tab-button');
-    const tabContents = document.querySelectorAll('.services__tab-content');
-
-    if (tabButtons.length === 0) return; // Exit if no tabs found
-
-    tabButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        const tabName = button.getAttribute('data-tab');
-
-        // Remove active class from all buttons and contents
-        tabButtons.forEach(btn => btn.classList.remove('services__tab-button--active'));
-        tabContents.forEach(content => content.classList.remove('services__tab-content--active'));
-
-        // Add active class to clicked button and corresponding content
-        button.classList.add('services__tab-button--active');
-        
-        // Specifically target the tab content element
-        const activeTab = document.querySelector(`.services__tab-content[data-tab="${tabName}"]`);
-        if (activeTab) {
-          activeTab.classList.add('services__tab-content--active');
-        }
-      });
-    });
-  }
 
   // ─────────────────────────────────────
   // INIT
@@ -725,8 +603,7 @@
     initHeroEntrance();
     initScrollAnimations();
     initCountUp();
-    initServicesStagger();
-    initServicesTabs();
+    initMasteryTabs();
     initCareStagger();
     initAdvantages();
     initPromo();
@@ -736,21 +613,6 @@
     initMagneticButtons();
     initCursorGlow();
 
-    // Initialize portfolio swiper with slight delay to ensure DOM is ready
-    if (typeof Swiper !== 'undefined') {
-      initPortfolioSwiper();
-    } else {
-      // Fallback: retry after Swiper is loaded
-      const checkInterval = setInterval(() => {
-        if (typeof Swiper !== 'undefined') {
-          clearInterval(checkInterval);
-          initPortfolioSwiper();
-        }
-      }, 100);
-
-      // Timeout after 5 seconds
-      setTimeout(() => clearInterval(checkInterval), 5000);
-    }
   }
 
   // Run on DOM ready

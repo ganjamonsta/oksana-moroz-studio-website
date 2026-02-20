@@ -15,7 +15,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Fonts -->
+  <!-- Fonts with early preload -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- CSS -->
@@ -26,9 +27,6 @@
   <link rel="stylesheet" href="css/sections.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/responsive.css">
-
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 </head>
 <body>
 
@@ -61,9 +59,7 @@
         </button>
         <ul class="header__nav-list">
           <li><a href="#about" class="header__nav-link">О студии</a></li>
-          <li><a href="#services" class="header__nav-link">Услуги</a></li>
-          <li><a href="#portfolio" class="header__nav-link">Портфолио</a></li>
-          <li><a href="#team" class="header__nav-link">Команда</a></li>
+          <li><a href="#mastery" class="header__nav-link">Мастерство</a></li>
           <li><a href="#care" class="header__nav-link">Уход</a></li>
           <li><a href="#promo" class="header__nav-link">Акции</a></li>
           <li><a href="#contacts" class="header__nav-link">Контакты</a></li>
@@ -89,7 +85,8 @@
     <!-- ═══════════════════════════════════════ -->
     <section class="hero" id="hero">
       <div class="hero__bg">
-        <div class="hero__bg-img" style="background-image: url('assets/images/header.jpeg');"></div>
+        <!-- PLACEHOLDER: заменить на реальное фото главного экрана (1920×1080) -->
+        <div class="hero__bg-img"></div>
         <div class="hero__overlay"></div>
       </div>
       <div class="hero__content container">
@@ -104,7 +101,7 @@
             <span>Записаться</span>
             <svg class="btn__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="#portfolio" class="btn btn--outline btn--lg">Портфолио</a>
+          <a href="#mastery" class="btn btn--outline btn--lg">Наши работы</a>
         </div>
         <div class="hero__badge anim-fade" data-anim="fade-up">
           <span class="hero__badge-text">-10% на первое посещение</span>
@@ -119,7 +116,8 @@
       <div class="container about__grid">
         <div class="about__image-col anim-fade" data-anim="fade-right">
           <div class="about__image-wrapper">
-            <img src="assets/images/about.jpg"
+            <!-- PLACEHOLDER: заменить на реальное фото студии / работы колориста (800×1000, портрет) -->
+            <img src="assets/images/about-studio.jpg"
                  alt="Работа колористов Oksana Moroz Studio" class="about__image" loading="lazy">
             <div class="about__image-frame"></div>
           </div>
@@ -196,297 +194,411 @@
     </div>
 
     <!-- ═══════════════════════════════════════ -->
-    <!-- 04. SERVICES -->
+    <!-- 04. MASTERY (Услуги + Портфолио + Мастера) -->
     <!-- ═══════════════════════════════════════ -->
-    <section class="services section" id="services">
+    <section class="mastery section" id="mastery">
       <div class="container">
-        <span class="section__label anim-fade" data-anim="fade-up">Услуги</span>
-        <h2 class="section__title anim-fade" data-anim="fade-up">Сложное окрашивание <em>премиум-класса</em></h2>
-        <p class="section__desc anim-fade" data-anim="fade-up">Каждый оттенок подбирается индивидуально с&nbsp;учётом вашего цветотипа, структуры волос и&nbsp;пожеланий</p>
 
-        <!-- Консультация CTA -->
-        <div class="services__cta anim-fade" data-anim="fade-up">
-          <h3 class="services__cta-title">Всё начинается с&nbsp;консультации</h3>
-          <p class="services__cta-desc">Подберём технику и&nbsp;оттенок. Определим цветотип, оценим состояние волос</p>
-          <div class="services__cta-buttons">
-            <a href="https://wa.me/79629488757" target="_blank" class="btn btn--gold">WhatsApp</a>
-            <a href="https://t.me/oksmoroz_studio" target="_blank" class="btn btn--outline">Telegram</a>
+        <!-- Единый горизонтальный блок -->
+        <div class="mastery__header anim-fade" data-anim="fade-up">
+          <div class="mastery__header-left">
+            <span class="section__label">Наше мастерство</span>
+            <h2 class="mastery__header-title">Техника, результат, <em>мастер</em></h2>
+            <p class="mastery__header-desc">Выберите технику&nbsp;&mdash; увидьте результат и&nbsp;узнайте, кто его создал</p>
           </div>
-        </div>
-
-        <!-- TABS -->
-        <div class="services__tabs anim-fade" data-anim="fade-up">
-          <div class="services__tabs-nav">
-            <button class="services__tab-button services__tab-button--active" data-tab="techniques">
-              Основные техники
-            </button>
-            <button class="services__tab-button" data-tab="blondes">
-              Блонды
-            </button>
-            <button class="services__tab-button" data-tab="special">
-              Специальные
-            </button>
-          </div>
-
-          <!-- TAB 1: Основные техники -->
-          <div class="services__tab-content services__tab-content--active" data-tab="techniques">
-            <div class="services__grid">
-              <!-- Балаяж -->
-              <div class="services__card anim-fade" data-anim="fade-up">
-                <div class="services__card-icon">
-                  <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M20 32c0-8 5-16 12-16s12 8 12 16-5 16-12 16-12-8-12-16z" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-                <h3 class="services__card-title">Балаяж</h3>
-                <p class="services__card-desc">Естественные блики и мягкие переходы цвета. Идеален для создания объёма и визуального движения волос.</p>
-                <div class="services__card-meta">
-                  <span>➔ Кому: от русого до чёрного</span>
-                  <span>➔ После: тёплые компрессы и масла</span>
-                </div>
-                <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
-                  Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                </a>
-              </div>
-
-              <!-- Airtouch -->
-              <div class="services__card anim-fade" data-anim="fade-up">
-                <div class="services__card-icon">
-                  <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M22 22l20 20M42 22L22 42" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-                <h3 class="services__card-title">Airtouch</h3>
-                <p class="services__card-desc">Щадящее осветление феном — безопасно, деликатно. Минимум повреждения структуры волос.</p>
-                <div class="services__card-meta">
-                  <span>➔ Кому: чувствительные волосы</span>
-                  <span>➔ После: интенсивный уход K18</span>
-                </div>
-                <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
-                  Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                </a>
-              </div>
-
-              <!-- Total Blonde -->
-              <div class="services__card anim-fade" data-anim="fade-up">
-                <div class="services__card-icon">
-                  <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M32 16v32M16 32h32" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-                <h3 class="services__card-title">Total Blonde</h3>
-                <p class="services__card-desc">Полное осветление с идеальной ровностью. Холодный или тёплый блонд без жёлтых пятен.</p>
-                <div class="services__card-meta">
-                  <span>➔ Кому: хотя бы чёрные волосы</span>
-                  <span>➔ После: еженедельный уход, тонирование</span>
-                </div>
-                <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
-                  Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- TAB 2: Блонды -->
-          <div class="services__tab-content" data-tab="blondes">
-            <div class="services__grid">
-              <!-- Интеллигентный блонд -->
-              <div class="services__card anim-fade" data-anim="fade-up">
-                <div class="services__card-icon">
-                  <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M24 20c0 8 4 14 8 20M32 20c4 6 8 12 8 20" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-                <h3 class="services__card-title">Интеллигентный блонд</h3>
-                <p class="services__card-desc">Деликатное осветление с благородными переливами. Утончённый, многогранный цвет.</p>
-                <div class="services__card-meta">
-                  <span>➔ Эффект: элегантность и естественность</span>
-                  <span>➔ После: еженедельная тоника</span>
-                </div>
-                <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
-                  Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                </a>
-              </div>
-
-              <!-- Бразильский блонд -->
-              <div class="services__card anim-fade" data-anim="fade-up">
-                <div class="services__card-icon">
-                  <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M20 38c3-8 9-14 12-14s9 6 12 14" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-                <h3 class="services__card-title">Бразильский блонд</h3>
-                <p class="services__card-desc">Тёплый многогранный блонд с медовыми и золотистыми рефлексами. Роскошный и объёмный.</p>
-                <div class="services__card-meta">
-                  <span>➔ Эффект: солнце и объём</span>
-                  <span>➔ После: масло для сияния</span>
-                </div>
-                <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
-                  Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- TAB 3: Специальные -->
-          <div class="services__tab-content" data-tab="special">
-            <div class="services__grid">
-              <!-- Шитьё седины -->
-              <div class="services__card anim-fade" data-anim="fade-up">
-                <div class="services__card-icon">
-                  <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M20 32h24M26 24l-6 8 6 8M38 24l6 8-6 8" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-                <h3 class="services__card-title">Шитьё седины</h3>
-                <p class="services__card-desc">Авторская техника Оксаны. Безупречное закрашивание с естественным результатом и стойкостью.</p>
-                <div class="services__card-meta">
-                  <span>➔ Результат: до 3 месяцев</span>
-                  <span>➔ После: защита от секущихся концов</span>
-                </div>
-                <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
-                  Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                </a>
-              </div>
-
-              <!-- Мелирование -->
-              <div class="services__card anim-fade" data-anim="fade-up">
-                <div class="services__card-icon">
-                  <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/><path d="M24 24c4-4 12-4 16 0s4 12 0 16-12 4-16 0-4-12 0-16z" stroke="currentColor" stroke-width="1.5"/></svg>
-                </div>
-                <h3 class="services__card-title">Мелирование</h3>
-                <p class="services__card-desc">Классическая техника для добавления объёма и текстуры. Работает на любых волосах.</p>
-                <div class="services__card-meta">
-                  <span>➔ Кому: все типы волос</span>
-                  <span>➔ После: питательные маски</span>
-                </div>
-                <a href="https://n180505.yclients.com/" target="_blank" class="services__card-link">
-                  Записаться <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                </a>
-              </div>
+          <div class="mastery__header-divider"></div>
+          <div class="mastery__header-right">
+            <p class="mastery__header-cta-text">Всё начинается с&nbsp;консультации.<br>Подберём технику и&nbsp;оттенок. Определим цветотип, оценим состояние волос</p>
+            <div class="mastery__header-buttons">
+              <a href="https://wa.me/79629488757" target="_blank" class="btn btn--gold">WhatsApp</a>
+              <a href="https://t.me/oksmoroz_studio" target="_blank" class="btn btn--outline">Telegram</a>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- 05. PORTFOLIO -->
-    <!-- ═══════════════════════════════════════ -->
-    <section class="portfolio section" id="portfolio">
-      <div class="container">
-        <span class="section__label anim-fade" data-anim="fade-up">Портфолио</span>
-        <h2 class="section__title anim-fade" data-anim="fade-up">Наши <em>работы</em></h2>
-      </div>
-
-      <div class="portfolio__slider anim-fade" data-anim="fade-up">
-        <div class="portfolio__content-wrap">
-          <div class="swiper portfolio__swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide portfolio__slide" 
-                   data-title="Балаяж блонд"
-                   data-desc="Техника свободной руки для естественных бликов и мягких переходов цвета"
-                   data-time="4-5 часов"
-                   data-complexity="Средняя">
-                <div class="portfolio__img-wrap">
-                  <img src="assets/images/1.jpeg"
-                       alt="Работа — балаяж блонд" loading="lazy" class="portfolio__img">
-                  <div class="portfolio__slide-overlay">
-                    <span class="portfolio__slide-tag">Балаяж</span>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide portfolio__slide" 
-                   data-title="Сложное окрашивание"
-                   data-desc="Многоцветное окрашивание с плавными переходами и тонированием"
-                   data-time="5-6 часов"
-                   data-complexity="Высокая">
-                <div class="portfolio__img-wrap">
-                  <img src="assets/images/2.jpeg"
-                       alt="Работа — сложное окрашивание" loading="lazy" class="portfolio__img">
-                  <div class="portfolio__slide-overlay">
-                    <span class="portfolio__slide-tag">Сложное окрашивание</span>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide portfolio__slide" 
-                   data-title="Airtouch"
-                   data-desc="Щадящая техника осветления с выдуванием волос феном для максимально мягкого результата"
-                   data-time="5-7 часов"
-                   data-complexity="Высокая">
-                <div class="portfolio__img-wrap">
-                  <img src="assets/images/3.jpeg"
-                       alt="Работа — airtouch" loading="lazy" class="portfolio__img">
-                  <div class="portfolio__slide-overlay">
-                    <span class="portfolio__slide-tag">Airtouch</span>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide portfolio__slide" 
-                   data-title="Total Blonde"
-                   data-desc="Полное осветление с сохранением качества волос и достижением идеального холодного блонда"
-                   data-time="6-8 часов"
-                   data-complexity="Очень высокая">
-                <div class="portfolio__img-wrap">
-                  <img src="assets/images/4.jpeg"
-                       alt="Работа — total blonde" loading="lazy" class="portfolio__img">
-                  <div class="portfolio__slide-overlay">
-                    <span class="portfolio__slide-tag">Total Blonde</span>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide portfolio__slide" 
-                   data-title="Мелирование"
-                   data-desc="Классическая техника для добавления объёма и визуальной текстуры волосам"
-                   data-time="3-4 часа"
-                   data-complexity="Средняя">
-                <div class="portfolio__img-wrap">
-                  <img src="assets/images/5.jpg"
-                       alt="Работа — мелирование" loading="lazy" class="portfolio__img">
-                  <div class="portfolio__slide-overlay">
-                    <span class="portfolio__slide-tag">Мелирование</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <!-- Technique tabs -->
+        <div class="mastery__tabs anim-fade" data-anim="fade-up">
+          <div class="mastery__tabs-nav">
+            <button class="mastery__tab-btn mastery__tab-btn--active" data-mastery="balayage">Балаяж</button>
+            <button class="mastery__tab-btn" data-mastery="airtouch">Airtouch</button>
+            <button class="mastery__tab-btn" data-mastery="totalblonde">Total Blonde</button>
+            <button class="mastery__tab-btn" data-mastery="intelligentblonde">Интеллигентный блонд</button>
+            <button class="mastery__tab-btn" data-mastery="brazilianblonde">Бразильский блонд</button>
+            <button class="mastery__tab-btn" data-mastery="greycoverage">Шитьё седины</button>
+            <button class="mastery__tab-btn" data-mastery="highlights">Мелирование</button>
           </div>
 
-          <div class="portfolio__info">
-            <div class="portfolio__info-content">
-              <span class="portfolio__info-label">Детали работы</span>
-              <h3 class="portfolio__info-title">Балаяж блонд</h3>
-              <p class="portfolio__info-desc">Техника свободной руки для естественных бликов и мягких переходов цвета</p>
-              
-              <div class="portfolio__info-details">
-                <div class="portfolio__info-item">
-                  <svg class="portfolio__info-icon" viewBox="0 0 24 24" fill="none" width="20" height="20">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
+          <!-- ── Panel: Балаяж ── -->
+          <div class="mastery__panel mastery__panel--active" data-mastery="balayage">
+            <div class="mastery__panel-image">
+              <!-- PLACEHOLDER: заменить на реальное фото балаяжа (800×1000, портрет) -->
+              <img src="assets/images/technique-balayage.jpg" alt="Балаяж — работа Oksana Moroz Studio" loading="lazy">
+            </div>
+            <div class="mastery__panel-info">
+              <span class="mastery__panel-tag">Основная техника</span>
+              <h3 class="mastery__panel-title">Балаяж</h3>
+              <p class="mastery__panel-desc">Естественные блики и&nbsp;мягкие переходы цвета. Идеален для создания объёма и&nbsp;визуального движения волос. Техника свободной руки позволяет добиться максимально натурального результата.</p>
+              <div class="mastery__panel-meta">
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
                   <div>
-                    <span class="portfolio__info-detail-label">Время</span>
-                    <span class="portfolio__info-detail-value">4-5 часов</span>
+                    <span class="mastery__panel-meta-label">Время</span>
+                    <span class="mastery__panel-meta-value">4-5 часов</span>
                   </div>
                 </div>
-                <div class="portfolio__info-item">
-                  <svg class="portfolio__info-icon" viewBox="0 0 24 24" fill="none" width="20" height="20">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-                  </svg>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
                   <div>
-                    <span class="portfolio__info-detail-label">Сложность</span>
-                    <span class="portfolio__info-detail-value">Средняя</span>
+                    <span class="mastery__panel-meta-label">Сложность</span>
+                    <span class="mastery__panel-meta-value">Средняя</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4-4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Кому подходит</span>
+                    <span class="mastery__panel-meta-value">От русого до чёрного</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Уход после</span>
+                    <span class="mastery__panel-meta-value">Тёплые компрессы и&nbsp;масла</span>
                   </div>
                 </div>
               </div>
-
-              <a href="https://n180505.yclients.com/" target="_blank" class="btn btn--gold">
-                Записаться на эту услугу
-              </a>
+              <div class="mastery__panel-master">
+                <div class="mastery__panel-master-avatar">
+                  <svg viewBox="0 0 64 64" fill="none" width="40" height="40"><circle cx="32" cy="24" r="12" stroke="currentColor" stroke-width="1.5"/><path d="M10 56c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div>
+                  <span class="mastery__panel-master-name">Оксана Мороз</span>
+                  <span class="mastery__panel-master-role">Арт-директор &middot; 20+ лет опыта</span>
+                </div>
+              </div>
+              <a href="https://n180505.yclients.com/" target="_blank" class="btn btn--gold mastery__panel-btn">Записаться на&nbsp;балаяж</a>
             </div>
           </div>
-        </div>
 
-          <div class="portfolio__nav">
-            <button class="portfolio__arrow portfolio__arrow--prev" aria-label="Назад">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <div class="portfolio__counter">
-              <span class="portfolio__current">01</span>
-              <span class="portfolio__divider">/</span>
-              <span class="portfolio__total">05</span>
+          <!-- ── Panel: Airtouch ── -->
+          <div class="mastery__panel" data-mastery="airtouch">
+            <div class="mastery__panel-image">
+              <!-- PLACEHOLDER: заменить на реальное фото airtouch (800×1000, портрет) -->
+              <img src="assets/images/technique-airtouch.jpg" alt="Airtouch — работа Oksana Moroz Studio" loading="lazy">
             </div>
-            <button class="portfolio__arrow portfolio__arrow--next" aria-label="Вперёд">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
+            <div class="mastery__panel-info">
+              <span class="mastery__panel-tag">Основная техника</span>
+              <h3 class="mastery__panel-title">Airtouch</h3>
+              <p class="mastery__panel-desc">Щадящее осветление феном&nbsp;&mdash; безопасно, деликатно. Минимум повреждения структуры волос. Идеальный выбор для тех, кто ценит здоровье волос.</p>
+              <div class="mastery__panel-meta">
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Время</span>
+                    <span class="mastery__panel-meta-value">5-7 часов</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Сложность</span>
+                    <span class="mastery__panel-meta-value">Высокая</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4-4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Кому подходит</span>
+                    <span class="mastery__panel-meta-value">Чувствительные волосы</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Уход после</span>
+                    <span class="mastery__panel-meta-value">Интенсивный уход K18</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mastery__panel-master">
+                <div class="mastery__panel-master-avatar">
+                  <svg viewBox="0 0 64 64" fill="none" width="40" height="40"><circle cx="32" cy="24" r="12" stroke="currentColor" stroke-width="1.5"/><path d="M10 56c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div>
+                  <span class="mastery__panel-master-name">Оксана Мороз</span>
+                  <span class="mastery__panel-master-role">Арт-директор &middot; 20+ лет опыта</span>
+                </div>
+              </div>
+              <a href="https://n180505.yclients.com/" target="_blank" class="btn btn--gold mastery__panel-btn">Записаться на&nbsp;airtouch</a>
+            </div>
           </div>
+
+          <!-- ── Panel: Total Blonde ── -->
+          <div class="mastery__panel" data-mastery="totalblonde">
+            <div class="mastery__panel-image">
+              <!-- PLACEHOLDER: заменить на реальное фото total blonde (800×1000, портрет) -->
+              <img src="assets/images/technique-total-blonde.jpg" alt="Total Blonde — работа Oksana Moroz Studio" loading="lazy">
+            </div>
+            <div class="mastery__panel-info">
+              <span class="mastery__panel-tag">Основная техника</span>
+              <h3 class="mastery__panel-title">Total Blonde</h3>
+              <p class="mastery__panel-desc">Полное осветление с&nbsp;идеальной ровностью. Холодный или тёплый блонд без жёлтых пятен. Одна из&nbsp;самых сложных и&nbsp;впечатляющих трансформаций.</p>
+              <div class="mastery__panel-meta">
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Время</span>
+                    <span class="mastery__panel-meta-value">6-8 часов</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Сложность</span>
+                    <span class="mastery__panel-meta-value">Очень высокая</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4-4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Кому подходит</span>
+                    <span class="mastery__panel-meta-value">Любой исходный цвет</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Уход после</span>
+                    <span class="mastery__panel-meta-value">Еженедельный уход, тонирование</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mastery__panel-master">
+                <div class="mastery__panel-master-avatar">
+                  <svg viewBox="0 0 64 64" fill="none" width="40" height="40"><circle cx="32" cy="24" r="12" stroke="currentColor" stroke-width="1.5"/><path d="M10 56c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div>
+                  <span class="mastery__panel-master-name">Оксана Мороз</span>
+                  <span class="mastery__panel-master-role">Арт-директор &middot; 20+ лет опыта</span>
+                </div>
+              </div>
+              <a href="https://n180505.yclients.com/" target="_blank" class="btn btn--gold mastery__panel-btn">Записаться на&nbsp;total blonde</a>
+            </div>
+          </div>
+
+          <!-- ── Panel: Интеллигентный блонд ── -->
+          <div class="mastery__panel" data-mastery="intelligentblonde">
+            <div class="mastery__panel-image">
+              <!-- PLACEHOLDER: заменить на реальное фото интеллигентного блонда (800×1000, портрет) -->
+              <img src="assets/images/technique-intelligent-blonde.jpg" alt="Интеллигентный блонд — работа Oksana Moroz Studio" loading="lazy">
+            </div>
+            <div class="mastery__panel-info">
+              <span class="mastery__panel-tag">Блонды</span>
+              <h3 class="mastery__panel-title">Интеллигентный блонд</h3>
+              <p class="mastery__panel-desc">Деликатное осветление с&nbsp;благородными переливами. Утончённый, многогранный цвет для тех, кто ценит элегантность и&nbsp;естественность.</p>
+              <div class="mastery__panel-meta">
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Время</span>
+                    <span class="mastery__panel-meta-value">5-6 часов</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Сложность</span>
+                    <span class="mastery__panel-meta-value">Высокая</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4-4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Эффект</span>
+                    <span class="mastery__panel-meta-value">Элегантность и&nbsp;естественность</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Уход после</span>
+                    <span class="mastery__panel-meta-value">Еженедельная тоника</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mastery__panel-master">
+                <div class="mastery__panel-master-avatar">
+                  <svg viewBox="0 0 64 64" fill="none" width="40" height="40"><circle cx="32" cy="24" r="12" stroke="currentColor" stroke-width="1.5"/><path d="M10 56c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div>
+                  <span class="mastery__panel-master-name">Оксана Мороз</span>
+                  <span class="mastery__panel-master-role">Арт-директор &middot; 20+ лет опыта</span>
+                </div>
+              </div>
+              <a href="https://n180505.yclients.com/" target="_blank" class="btn btn--gold mastery__panel-btn">Записаться</a>
+            </div>
+          </div>
+
+          <!-- ── Panel: Бразильский блонд ── -->
+          <div class="mastery__panel" data-mastery="brazilianblonde">
+            <div class="mastery__panel-image">
+              <!-- PLACEHOLDER: заменить на реальное фото бразильского блонда (800×1000, портрет) -->
+              <img src="assets/images/technique-brazilian-blonde.jpg" alt="Бразильский блонд — работа Oksana Moroz Studio" loading="lazy">
+            </div>
+            <div class="mastery__panel-info">
+              <span class="mastery__panel-tag">Блонды</span>
+              <h3 class="mastery__panel-title">Бразильский блонд</h3>
+              <p class="mastery__panel-desc">Тёплый многогранный блонд с&nbsp;медовыми и&nbsp;золотистыми рефлексами. Роскошный объёмный цвет, который создаёт эффект солнечных бликов.</p>
+              <div class="mastery__panel-meta">
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Время</span>
+                    <span class="mastery__panel-meta-value">4-6 часов</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Сложность</span>
+                    <span class="mastery__panel-meta-value">Средняя</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4-4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Эффект</span>
+                    <span class="mastery__panel-meta-value">Солнце и&nbsp;объём</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Уход после</span>
+                    <span class="mastery__panel-meta-value">Масло для сияния</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mastery__panel-master">
+                <div class="mastery__panel-master-avatar">
+                  <svg viewBox="0 0 64 64" fill="none" width="40" height="40"><circle cx="32" cy="24" r="12" stroke="currentColor" stroke-width="1.5"/><path d="M10 56c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div>
+                  <span class="mastery__panel-master-name">Дарья М.</span>
+                  <span class="mastery__panel-master-role">Мастер-колорист</span>
+                </div>
+              </div>
+              <a href="https://n180505.yclients.com/" target="_blank" class="btn btn--gold mastery__panel-btn">Записаться</a>
+            </div>
+          </div>
+
+          <!-- ── Panel: Шитьё седины ── -->
+          <div class="mastery__panel" data-mastery="greycoverage">
+            <div class="mastery__panel-image">
+              <!-- PLACEHOLDER: заменить на реальное фото шитья седины (800×1000, портрет) -->
+              <img src="assets/images/technique-grey-coverage.jpg" alt="Шитьё седины — работа Oksana Moroz Studio" loading="lazy">
+            </div>
+            <div class="mastery__panel-info">
+              <span class="mastery__panel-tag">Авторская техника</span>
+              <h3 class="mastery__panel-title">Шитьё седины</h3>
+              <p class="mastery__panel-desc">Авторская техника Оксаны Мороз. Безупречное закрашивание с&nbsp;естественным результатом и&nbsp;стойкостью до&nbsp;3&nbsp;месяцев. Решение, которое не&nbsp;найти в&nbsp;других студиях.</p>
+              <div class="mastery__panel-meta">
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Время</span>
+                    <span class="mastery__panel-meta-value">3-4 часа</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Результат</span>
+                    <span class="mastery__panel-meta-value">До 3 месяцев</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4-4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Кому подходит</span>
+                    <span class="mastery__panel-meta-value">Седые волосы любого типа</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Уход после</span>
+                    <span class="mastery__panel-meta-value">Защита от&nbsp;секущихся концов</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mastery__panel-master">
+                <div class="mastery__panel-master-avatar">
+                  <svg viewBox="0 0 64 64" fill="none" width="40" height="40"><circle cx="32" cy="24" r="12" stroke="currentColor" stroke-width="1.5"/><path d="M10 56c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div>
+                  <span class="mastery__panel-master-name">Оксана Мороз</span>
+                  <span class="mastery__panel-master-role">Автор техники &middot; Арт-директор</span>
+                </div>
+              </div>
+              <a href="https://n180505.yclients.com/" target="_blank" class="btn btn--gold mastery__panel-btn">Записаться</a>
+            </div>
+          </div>
+
+          <!-- ── Panel: Мелирование ── -->
+          <div class="mastery__panel" data-mastery="highlights">
+            <div class="mastery__panel-image">
+              <!-- PLACEHOLDER: заменить на реальное фото мелирования (800×1000, портрет) -->
+              <img src="assets/images/technique-highlights.jpg" alt="Мелирование — работа Oksana Moroz Studio" loading="lazy">
+            </div>
+            <div class="mastery__panel-info">
+              <span class="mastery__panel-tag">Классика</span>
+              <h3 class="mastery__panel-title">Мелирование</h3>
+              <p class="mastery__panel-desc">Классическая техника для добавления объёма и&nbsp;текстуры. Работает на&nbsp;любых волосах, создавая многомерный,  живой цвет.</p>
+              <div class="mastery__panel-meta">
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Время</span>
+                    <span class="mastery__panel-meta-value">3-4 часа</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Сложность</span>
+                    <span class="mastery__panel-meta-value">Средняя</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4-4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Кому подходит</span>
+                    <span class="mastery__panel-meta-value">Все типы волос</span>
+                  </div>
+                </div>
+                <div class="mastery__panel-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
+                  <div>
+                    <span class="mastery__panel-meta-label">Уход после</span>
+                    <span class="mastery__panel-meta-value">Питательные маски</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mastery__panel-master">
+                <div class="mastery__panel-master-avatar">
+                  <svg viewBox="0 0 64 64" fill="none" width="40" height="40"><circle cx="32" cy="24" r="12" stroke="currentColor" stroke-width="1.5"/><path d="M10 56c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
+                <div>
+                  <span class="mastery__panel-master-name">Дарья М.</span>
+                  <span class="mastery__panel-master-role">Мастер-колорист</span>
+                </div>
+              </div>
+              <a href="https://n180505.yclients.com/" target="_blank" class="btn btn--gold mastery__panel-btn">Записаться на&nbsp;мелирование</a>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -533,45 +645,6 @@
     </section>
 
     <!-- ═══════════════════════════════════════ -->
-    <!-- 05b. TEAM (Наши мастера) -->
-    <!-- ═══════════════════════════════════════ -->
-    <section class="team section" id="team">
-      <div class="container">
-        <span class="section__label anim-fade" data-anim="fade-up">Команда</span>
-        <h2 class="section__title anim-fade" data-anim="fade-up">Наши <em>мастера</em></h2>
-        <p class="section__desc anim-fade" data-anim="fade-up">Профессионалы, которые постоянно учатся, следят за&nbsp;трендами и&nbsp;работают исключительно на&nbsp;качество</p>
-
-        <div class="team__grid">
-          <div class="team__card anim-fade" data-anim="fade-up">
-            <div class="team__card-avatar">
-              <div class="team__card-avatar-placeholder">
-                <svg viewBox="0 0 64 64" fill="none" width="64" height="64"><circle cx="32" cy="24" r="12" stroke="currentColor" stroke-width="1.5"/><path d="M10 56c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="currentColor" stroke-width="1.5"/></svg>
-              </div>
-            </div>
-            <div class="team__card-info">
-              <h3 class="team__card-name">Оксана Мороз</h3>
-              <span class="team__card-role">Арт-директор</span>
-              <p class="team__card-desc">Основательница студии с&nbsp;20-летним опытом. Проводит авторские мастер-классы по&nbsp;технике Air-Blond и&nbsp;шитью седины. Специалист по&nbsp;сложным трансформациям и&nbsp;коррекции окрашиваний.</p>
-            </div>
-          </div>
-
-          <div class="team__card anim-fade" data-anim="fade-up">
-            <div class="team__card-avatar">
-              <div class="team__card-avatar-placeholder">
-                <svg viewBox="0 0 64 64" fill="none" width="64" height="64"><circle cx="32" cy="24" r="12" stroke="currentColor" stroke-width="1.5"/><path d="M10 56c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="currentColor" stroke-width="1.5"/></svg>
-              </div>
-            </div>
-            <div class="team__card-info">
-              <h3 class="team__card-name">Дарья М.</h3>
-              <span class="team__card-role">Мастер-юниор</span>
-              <p class="team__card-desc">Талантливый молодой колорист, работающий под руководством Оксаны Мороз. Выполняет окрашивания по&nbsp;авторским техникам студии. Внимательна к&nbsp;деталям и&nbsp;пожеланиям клиентов.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════ -->
     <!-- 06. CARE (Уходовые процедуры) -->
     <!-- ═══════════════════════════════════════ -->
     <section class="care section" id="care">
@@ -584,7 +657,8 @@
           <!-- K18 -->
           <div class="care__card anim-fade" data-anim="fade-up">
             <div class="care__card-img-wrap">
-              <img src="assets/images/k18.webp"
+              <!-- PLACEHOLDER: заменить на реальное фото K18 (800×600, ландшафт) -->
+              <img src="assets/images/care-k18.jpg"
                    alt="Уход K18" loading="lazy" class="care__card-img">
             </div>
             <div class="care__card-body">
@@ -596,7 +670,8 @@
           <!-- Tokio Inkarami -->
           <div class="care__card anim-fade" data-anim="fade-up">
             <div class="care__card-img-wrap">
-              <img src="assets/images/tokio.jpeg"
+              <!-- PLACEHOLDER: заменить на реальное фото Tokio Inkarami (800×600, ландшафт) -->
+              <img src="assets/images/care-tokio-inkarami.jpg"
                    alt="Премиум-уход Tokio Inkarami" loading="lazy" class="care__card-img">
             </div>
             <div class="care__card-body">
@@ -608,7 +683,8 @@
           <!-- J Beverly Hills -->
           <div class="care__card anim-fade" data-anim="fade-up">
             <div class="care__card-img-wrap">
-              <img src="assets/images/jbeverly.webp"
+              <!-- PLACEHOLDER: заменить на реальное фото J Beverly Hills (800×600, ландшафт) -->
+              <img src="assets/images/care-jbeverly-hills.jpg"
                    alt="Уход J Beverly Hills" loading="lazy" class="care__card-img">
             </div>
             <div class="care__card-body">
@@ -712,7 +788,8 @@
     <!-- ═══════════════════════════════════════ -->
     <section class="cta section">
       <div class="cta__bg">
-        <div class="cta__bg-img" style="background-image: url('assets/images/2.jpeg');"></div>
+        <!-- PLACEHOLDER: заменить на реальное фото для секции CTA (1920×1080) -->
+        <div class="cta__bg-img"></div>
         <div class="cta__overlay"></div>
       </div>
       <div class="container cta__inner">
@@ -839,8 +916,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <!-- Lenis smooth scroll -->
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
-  <!-- Swiper -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <!-- Main -->
   <script src="js/main.js"></script>
 </body>
