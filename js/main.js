@@ -225,8 +225,10 @@
   // ─────────────────────────────────────
   function initScrollAnimations() {
     // Generic fade-in for elements outside hero
-    // Exclude elements that have dedicated stagger animations
-    const animElements = document.querySelectorAll('.section .anim-fade:not(.care__card):not(.advantages__item)');
+    // Exclude .care__card — animated by dedicated initCareStagger()
+    // .advantages__item is NOT excluded: initAdvantages() only animates the icon SVG,
+    // while this handles the item's own opacity/translate fade-in — no conflict
+    const animElements = document.querySelectorAll('.section .anim-fade:not(.care__card)');
 
     animElements.forEach((el, i) => {
       const anim = el.dataset.anim || 'fade-up';
