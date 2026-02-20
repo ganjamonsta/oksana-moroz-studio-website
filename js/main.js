@@ -320,6 +320,7 @@
   function activateMasteryTab(targetKey, tabButtons, panels) {
     // Block if animation in progress
     if (masteryAnimating) return;
+    
     // Find the button with matching data-mastery
     const button = Array.from(tabButtons).find(btn => btn.getAttribute('data-mastery') === targetKey);
     if (!button) return;
@@ -378,6 +379,14 @@
     target.classList.add('mastery__panel--active');
     updateMasteryContainerHeight(target);
 
+    // Safe unlock function with fallback timeout
+    const unlockAnimation = () => {
+      masteryAnimating = false;
+    };
+    
+    // Guarantee unlock after 700ms even if animations fail
+    const timeoutId = setTimeout(unlockAnimation, 700);
+
     // Animate panels sliding
     if (currentPanel && container) {
       // Old panel slides OUT in opposite direction
@@ -394,13 +403,16 @@
       gsap.to(target,
         { opacity: 1, x: 0, duration: 0.5, ease: 'power3.inOut',
           onComplete: () => {
+            clearTimeout(timeoutId);
             gsap.set(target, { clearProps: 'opacity,x,transform' });
-            masteryAnimating = false;
+            unlockAnimation();
           }
         }
       );
     } else {
-      masteryAnimating = false;
+      // No previous panel or container, unlock immediately
+      clearTimeout(timeoutId);
+      unlockAnimation();
     }
 
     // Animate panel inner content (image + info) - synchronized for mobile
