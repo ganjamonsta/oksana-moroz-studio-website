@@ -304,6 +304,18 @@
   
   let masteryAnimating = false; // Защита от быстрых кликов/свайпов
   
+  // Функция для обновления высоты контейнера в зависимости от активной панели
+  function updateMasteryContainerHeight(panel) {
+    const container = document.querySelector('.mastery__panels-container');
+    if (!container || !panel) return;
+    
+    // Use requestAnimationFrame to ensure DOM is updated
+    requestAnimationFrame(() => {
+      const panelHeight = panel.offsetHeight;
+      container.style.height = panelHeight + 'px';
+    });
+  }
+  
   // Функция для активации таба по его ключу
   function activateMasteryTab(targetKey, tabButtons, panels) {
     // Block if animation in progress
@@ -330,37 +342,59 @@
     const currentPanel = document.querySelector('.mastery__panel--active');
     const container = document.querySelector('.mastery__panels-container');
 
-    // Remove active from all
+    // Remove active from button only (not panels)
     tabButtons.forEach(btn => btn.classList.remove('mastery__tab-btn--active'));
-    panels.forEach(panel => panel.classList.remove('mastery__panel--active'));
-
-    // Add active to new
+    
+    // Add active to new button 
     button.classList.add('mastery__tab-btn--active');
-    target.classList.add('mastery__panel--active');
 
     // Get container width for percentage-based slide distance
     const slideDistance = container ? container.offsetWidth : 400;
 
     masteryAnimating = true;
 
+    // ── KEY FIX: immediately pull current panel out of document flow
+    // so it won't stack with the incoming panel (both were position:relative briefly)
+    if (currentPanel && container) {
+      gsap.set(currentPanel, {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        opacity: 1,
+        x: 0
+      });
+    }
+
+    // Lock container height to current panel BEFORE adding new active panel
+    if (container && currentPanel) {
+      container.style.height = currentPanel.offsetHeight + 'px';
+    }
+
+    // Set initial offset state for new panel BEFORE it becomes active
+    gsap.set(target, { opacity: 0, x: direction * slideDistance * 0.3 });
+
+    // Make target panel active (position: relative) — only this one is in flow now
+    target.classList.add('mastery__panel--active');
+    updateMasteryContainerHeight(target);
+
     // Animate panels sliding
     if (currentPanel && container) {
       // Old panel slides OUT in opposite direction
-      gsap.fromTo(currentPanel,
-        { opacity: 1, x: 0, position: 'absolute', top: 0, left: 0, width: '100%', visibility: 'visible', height: 'auto' },
+      gsap.to(currentPanel,
         { opacity: 0, x: direction * -slideDistance * 0.3, duration: 0.5, ease: 'power3.inOut',
           onComplete: () => {
             gsap.set(currentPanel, { clearProps: 'all' });
+            currentPanel.classList.remove('mastery__panel--active');
           }
         }
       );
 
       // New panel slides IN from the other side
-      gsap.fromTo(target,
-        { opacity: 0, x: direction * slideDistance * 0.3 },
+      gsap.to(target,
         { opacity: 1, x: 0, duration: 0.5, ease: 'power3.inOut',
           onComplete: () => {
-            gsap.set(target, { clearProps: 'transform' });
+            gsap.set(target, { clearProps: 'opacity,x,transform' });
             masteryAnimating = false;
           }
         }
@@ -369,20 +403,20 @@
       masteryAnimating = false;
     }
 
-    // Animate panel inner content (image + info) with stagger
+    // Animate panel inner content (image + info) - synchronized for mobile
     const img = target.querySelector('.mastery__panel-image img');
     const info = target.querySelector('.mastery__panel-info');
     
     if (img) {
       gsap.fromTo(img,
         { scale: 1.06, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.6, ease: 'power3.out', delay: 0.2 }
+        { scale: 1, opacity: 1, duration: 0.5, ease: 'power3.out' }
       );
     }
     if (info) {
       gsap.fromTo(info,
-        { x: direction * 40, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.5, ease: 'power3.out', delay: 0.25 }
+        { opacity: 0 },
+        { opacity: 1, duration: 0.5, ease: 'power3.out' }
       );
     }
 
@@ -452,6 +486,12 @@
 
     if (tabButtons.length === 0 || panels.length === 0) return;
 
+    // Set initial height for active panel
+    const activePanel = document.querySelector('.mastery__panel--active');
+    if (activePanel && container) {
+      updateMasteryContainerHeight(activePanel);
+    }
+
     tabButtons.forEach(button => {
       button.addEventListener('click', (e) => {
         e.preventDefault();
@@ -462,6 +502,14 @@
 
     // Инициализируем свайпы на мобильных устройствах
     initMasterySwipe();
+    
+    // Update height on window resize
+    window.addEventListener('resize', () => {
+      const activePanel = document.querySelector('.mastery__panel--active');
+      if (activePanel && container) {
+        updateMasteryContainerHeight(activePanel);
+      }
+    });
   }
 
   // ─────────────────────────────────────
